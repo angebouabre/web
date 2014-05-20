@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from django.db import models
+
+# Create your models here.
+
+
+class Carte(models.Model):
+    nom_carte = models.CharField(max_length=30, unique=True)
+    type_carte = models.CharField(max_length=30, blank=True, null=True)
+    mac = models.CharField(max_length=30, blank=True, null=True)
+    memoire_disque = models.CharField(max_length=30, blank=True, null=True)
+    is_activated = models.BooleanField()
+    
+    def __unicode__(self):
+        return u"%s" % self.nom_carte
+
+class Capteur(models.Model):
+    nom_capteur = models.CharField(max_length=30, unique=True)
+    marque = models.CharField(max_length=30, blank=True, null=True)
+    localisation = models.CharField(max_length=30, blank=True, null=True)
+    type_mesure = models.CharField(max_length=30, blank=True, null=True)     
+    date_activation = models.DateTimeField(blank=True, null=True)
+    date_achat = models.DateField(blank=True, null=True)
+    capteur = models.ForeignKey(Carte)
+
+    def __unicode__(self):
+        return u"%s" % self.capteur
+
+
+
+class Mesure(models.Model):
+    valeur = models.DecimalField(max_digits=5, decimal_places=2)
+    capteur = models.ForeignKey(Capteur)
+
+    def __unicode__(self):
+        return u"%s" % self.valeur

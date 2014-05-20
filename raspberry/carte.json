@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "mesure.carte", "fields": {"type_carte": "raspberry pi", "nom_carte": "vegetta", "mac": "00:25:c4:a8:e2", "is_activated": true, "memoire_disque": "512 Mo"}}]

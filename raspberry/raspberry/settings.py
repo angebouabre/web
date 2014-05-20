@@ -13,7 +13,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 CUR_DIR = os.path.dirname(__file__)
-TEMPERATURE_TEMPLATE = os.path.join(CUR_DIR, os.pardir, 'temperature/templates/')
+TEMPERATURE_TEMPLATE = os.path.join(CUR_DIR, os.pardir, 'mesure/templates/')
 STATIC_DIR = os.path.join(CUR_DIR, os.pardir, 'static')
 
 
@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'temperature',
+    'mesure',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,7 +63,7 @@ WSGI_APPLICATION = 'raspberry.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'temperature.db'),
+        'NAME': os.path.join(BASE_DIR, 'mesure.db'),
     }
 }
 
