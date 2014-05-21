@@ -21,5 +21,14 @@ class DashBoardView(ListView):
     context_object_name = 'cartes'
     template_name = 'dashboard.html'
 
+    def get_context_data(self, **kwargs):
+       
+        localisation = self.kwargs['localisation']
+        print localisation
+        capteur = Capteur.objects.filter(localisation=localisation)
+        context = super(DashBoardView, self).get_context_data(**kwargs)
+
+        return context
+
 #    def get_context_data(self, **kwargs):
 

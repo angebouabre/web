@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 urlpatterns = patterns('',
     # Examples:
    url(r'^localisation/$', LocalisationView.as_view(), name='localisation'), 
-   url(r'^dashboard/$', DashBoardView.as_view(), name='dashboard'), 
+   url(r'^localisation/(?P<localisation>[-_.\w]+)/$', DashBoardView.as_view(), name='dashboard'), 
    #url(r'^$', TemperatureList.as_view(), name='temperatures'),
    # url(r'^temperature/(?P<pk>\d+)/$', TemperatureDetail.as_view(), name='temperature'),
     

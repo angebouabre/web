@@ -8,9 +8,27 @@
 {% endblock %}
 
 {% block content %}
-	{% for capteur in capteurs %}
-	    {{ capteur.localisation }}
-	{% endfor %}
+<link href='http://fonts.googleapis.com/css?family=Special+Elite|Bitter' rel='stylesheet' type='text/css'>
+<div class="row" style="background-color:grey; border:solid 2px; border-color:black;">
+  <div class="col-md-10 col-md-offset-1" style="margin-top:1%; margin-bottom:1%;">
+    <div class="row "style="background-color:white; border:solid 2px; border-color:black; margin-left:0px;">
+
+      {% for capteur in capteurs %}      
+      <div class="col-md-3" style="border:solid 1px; border-color:black; color:black;">
+          <div class="row ">
+              <div class="col-md-12">
+                  <a id="" class="" href="#"><img src="/static/img/batiment.png" style="height:90%; width:90%"/></a>
+              </div>
+              <div class="col-md-12">
+                  <a id="" class="" href="/mesure/localisation/{{capteur.localisation|cut:" "}}/">{{capteur.localisation}}</a>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block footer %}
