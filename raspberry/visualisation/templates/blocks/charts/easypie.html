@@ -1,0 +1,23 @@
+<div>
+<span class="chart" id='testSuccessPercent' data-percent="{{test.successPercent}}">
+</span>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+     var chart = window.chart = new EasyPieChart(document.querySelector('#testSuccessPercent'), {
+         easing: 'easeOutElastic',
+         animate:750,
+         barColor:'green',
+         trackColor:'red',
+         scaleColor:false,
+         lineCap:'butt',
+         size:150,
+         lineWidth:18,
+         onStep: function(from, to, percent) {
+             document.getElementById("successPercent").innerHTML = Math.round(percent) + "%";
+         }
+     });
+
+});
+
+</script>

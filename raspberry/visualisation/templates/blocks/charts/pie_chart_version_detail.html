@@ -1,0 +1,41 @@
+<html>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1.1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Test', 'Nombre de tests par theme'],
+          {% for theme in themes %}
+              ['{{theme.nom | capfirst}}',  {{theme.nbr}}],
+          {% endfor %}
+        ]);
+
+        var options = {
+          //title: 'Repartition des mesures par thème',
+          //is3D: true,
+          //legend: 'none',
+          //pieSliceText: 'label',
+          //backgroundColor:'#D3D3D3',
+          chartArea:{left:1, top:1, width:"98%",height:"100%"},
+          //width:200,
+          //height:150,
+          colors:['rgb(226,0,26)','rgb(189,18,32)','rgb(156,158,159)','rgb(62,39,130)','rgb(184,50,136)','rgb(87,171,39)','rgb(26,23,27)','rgb(225,190,136)','rgb(255,255,255)','rgb(22,221,59)'],
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+
+        function selectHandler() {
+          var selectedItem = chart.getSelection()[0];
+          if (selectedItem) {
+            var theme = data.getValue(selectedItem.row, 0);
+            location.href = theme.toLowerCase().concat('/?type={{type}}&start_date={{start_date}}&end_date={{end_date}}'); 
+          }
+        }
+
+        google.visualization.events.addListener(chart, 'select', selectHandler);
+        chart.draw(data, options);
+      }
+    </script>
+</html>

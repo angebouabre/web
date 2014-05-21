@@ -1,0 +1,70 @@
+<html>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Tests', 'Success',{role:'style'},{role:'annotation'}, 'Echecs',{role:'style'},{role:'annotation'}],
+          {% for test in tests %}
+             ['{{test.nom}}',  {{test.nbr_success_mesures}},'fill-color:green; fill-opacity:0.5','{{test.successPercent}}%',{{test.nbr_failed_mesures}},'fill-color:red; fill-opacity:0.5','{{test.failedPercent}}%'],
+          {% endfor %}
+        ]);
+
+        var options = {
+          title: '',
+          colors: ['green','red'],
+          //vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}},
+          isStacked: true,
+          dataOpacity: 0.5,
+          chartArea: {left:200,top:15,width:"45%",height:"{{chart_area_height}}%"},
+          bar: { groupWidth: '{{groupwidth}}%' },
+          //legend: { position: 'bottom', maxLines: 3 },
+          backgroundColor: {
+               stroke: 'green',
+               strokeWidth: 3,
+          },
+          //focusTarget: 'category',
+          focusTarget: 'category',
+          animation:{
+               easing:'inAndOut',
+          },
+          vAxis:{
+               viewWindowMode:'maximized',
+               baselineColor:'red',
+               textPosition:'out',
+               /*gridlines:{
+                   count:,
+               },*/
+               //minorGridlines:{count:2,},
+               //format:'#',
+          },
+          hAxis:{
+               viewWindowMode:'maximized',
+               viewWindow:{min:0},
+               minorGridlines:{count:0,},
+               gridlines:{
+                   count:1,
+               },
+               format:'',
+          },
+          //width:566,
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('bars_chart'));
+
+        function selectHandler() {
+          var selectedItem = chart.getSelection()[0];
+          if (selectedItem) {
+            var test = data.getValue(selectedItem.row, 0);
+            var href_link = test; //Include each link here to render templates
+            location.href = href_link.concat('/?type={{type}}&start_date={{start_date}}&end_date={{end_date}}'); 
+          }
+        }
+
+        google.visualization.events.addListener(chart, 'select', selectHandler);
+        
+        chart.draw(data, options);
+      }
+    </script>
+</html>

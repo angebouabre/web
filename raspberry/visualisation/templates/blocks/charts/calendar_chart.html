@@ -1,0 +1,46 @@
+<html>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1.1", {packages:["calendar"]});
+      google.setOnLoadCallback(drawChart);
+
+   function drawChart() {
+       var dataTable = new google.visualization.DataTable();
+       dataTable.addColumn({ type: 'date', id: 'Date' });
+       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+       dataTable.addRows([
+          {% for campagne in campagnes %}
+              [ new Date({{campagne.date_debut | safe}}),  {{campagne.nbrMesure}}],
+          {% endfor %}
+        ]);
+
+       var chart = new google.visualization.Calendar(document.getElementById('calendar_chart'));
+
+       var options = {
+         title: "Période de tests pour la {{version.projet|capfirst}} {{version.numero}}",
+         height: 145,
+         calendar: {
+             daysOfWeek: 'DLMMJVS',
+             cellSize:11.85,
+             monthLabel: {
+                 /*fontName: 'Times-Roman',
+                 fontSize: 16,
+                 color: 'green',
+                 bold: true,
+                 italic: false*/},
+             cellColor: {
+                 /*stroke: 'red',      // Color the border of the squares.
+                 strokeOpacity: 0.5, // Make the borders half transparent.
+                 strokeWidth: 2*/},      // ...and two pixels thick.
+        },
+        noDataPattern: {
+           backgroundColor: 'white',
+           color: 'rgb(156,158,159)'
+        },
+
+       };
+
+       chart.draw(dataTable, options);
+   }
+    </script>
+</html>
