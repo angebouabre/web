@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block title %}Localisations{% endblock %}
+
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+	{% for capteur in capteurs %}
+	    {{ capteur.localisation }}
+	{% endfor %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

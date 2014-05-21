@@ -1,0 +1,125 @@
+#container {
+   width:79%;
+   margin-left:10.5%;
+   background-color:white;
+}
+
+.body-log { 
+    padding-top: 185px;
+    background:#e3e3e3;
+    background-image:url('/static/img/sfr-log-bgimg.jpg');
+    background-position: 45% 2%;
+    background-repeat:no-repeat;
+}
+
+#login-form {
+    width:330px;
+    margin-left:40%;
+}
+
+.btn-sfr-red {
+    background-color:#E2001A;
+    color:#FFFFFF;
+}
+
+.btn-sfr-red:hover {
+    background-color:#E2001A;
+    color:black;
+}
+
+.footer{
+    position:fixed;
+    bottom:0;
+    width:100%;
+}
+
+#navbar-login {
+    opacity:0.4;
+    text-align:center;
+    padding-left: 44%
+}
+
+.navbar-default
+.navbar-link:hover {
+    color: #E2001A;
+}
+
+.Highlighted {
+    background-color : Green !important;
+    background-image :none !important;
+    color: White !important;
+    font-weight:bold !important;
+    font-size: 12pt;
+}
+
+.panel-primary > .custom-panel-heading-sfr {
+    font-family:'Ubuntu';
+    font-weight: bold;
+    font-size: 17px;
+    color: rgba(26,23,27, 1);
+    background-color: rgba(156,158,159, 1);
+    border-color: rgba(156,158,159, 0.8);
+}
+
+.custom-sfr-title {
+    font-family:'Ubuntu';
+    font-weight: bold;
+    font-size: 17px;
+    color: rgba(26,23,27, 1);
+}
+
+.custom-panel-border-sfr{
+    border-color: rgba(156,158,159, 0.8);
+}
+
+a.list-group-item.title-sfr, 
+a.list-group-item.title-sfr:hover, 
+a.list-group-item.title-sfr:focus {
+    font-family:'Ubuntu';
+    font-weight: bold;
+    font-size: 17px;
+    z-index: 2;
+    color: rgba(26,23,27, 1);
+    background-color: rgba(156,158,159, 1);
+    border-color: rgba(156,158,159, 0.8);
+
+}
+
+.btn-sfr-white, 
+.btn-sfr-white:hover,
+.btn-sfr-white:focus, 
+.btn-sfr-white:active  {
+    color: rgba(26,23,27, 1);
+    font-family:'Ubuntu';
+    font-weight: bold;
+    font-size: 17px;
+    background-color: rgba(156,158,159, 0.6);
+    border-color: rgba(255,255,255, 1);
+}
+
+.btn-sfr-white.active {
+    font-family:'Ubuntu';
+    color: rgba(226,0,26, 1);
+    background-color: rgba(156,158,159, 0.6);
+    border-color: rgba(255,255,255, 1);
+    font-style:italic;
+}
+
+.theme-sfr-font {
+    color: rgba(156,158,159, 0.9);
+    font-family:'Ubuntu';
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.bg-green-sfr-1 {
+    color: rgba(255,255,255, 1);
+    background-color: rgba(87,171,39, 1);
+    width: 100%;
+}
+
+.bg-red-sfr-1 {
+    color: rgba(255,255,255, 1);
+    background-color: rgba(226,0,26, 1);
+    width: 100%;
+}

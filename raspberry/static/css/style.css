@@ -1,0 +1,190 @@
+body {
+ font-family: helvetica, arial, sans-serif;
+ text-align: center;
+}
+.row {
+ width:100%;
+}
+.active {
+ background-color:rgb(189,18,32);
+}
+
+.navbar-brand {
+
+ float: left;
+ padding: 1px;
+ font-size: 18px;
+ line-height: 20px;
+
+}
+
+.nav-element a {
+ color:white;
+ font-family:'Sorts Mill Goudy';
+ font-style:normal;
+ font-weight:600;
+ font-size:20px;
+ letter-spacing:0em;
+
+}
+
+.nav > li > a {
+
+ position: relative;
+ display: block;
+ padding: 15px 7px; /* Top and right*/
+
+}
+
+.title > a {
+ color:rgb(26,23,27);
+ font-size:130%;
+ font-family:'Sorts Mill Goudy';
+}
+
+.jumbotron h1 {
+
+ font-size: 200%;
+
+}
+/*hover*/
+
+.nav > li > a:hover, .nav > li > a:focus {
+
+ text-decoration: none;
+ background-color: rgb(189,18,32);
+
+}
+
+.head-projet {
+ background-color:rgb(62,39,130);
+ color:rgb(255,255,255);
+}
+
+.head-projet > a {
+ color:rgb(255,255,255);
+ font-size: 150%;
+ font-family:'Sorts Mill Goudy';
+}
+
+.head-projet:hover {
+ background-color:rgb(4,53,121);
+ color:rgb(255,255,255);
+ font-family:'Sorts Mill Goudy';
+}
+/* MENU */
+
+#projets-list {
+ margin-left:25%;
+}
+#nav {
+ float: left;
+ margin-top: 50px; margin-left: 5%; padding: 0;
+ border: 1px solid white;
+ border-bottom: none;
+}
+
+#nav li a, #nav li {
+ float: left;
+ height:31px;
+ line-height:2px;
+}
+
+#nav li {
+ list-style: none;
+ position: relative;
+}
+
+#nav li a {
+ padding: 1em 2em;
+ text-decoration: none;
+ color: white;
+ background: url("http://static.s-sfr.fr/media/sfrheader-basemegamenu-background.jpg") repeat-x scroll 0px 0px transparent;
+ background: -webkit-gradient(linear, left top, left 25, from(black), color-stop(4%, #3c3c3c), to(#292929));
+ border-right: 1px solid #3c3c3c;
+ border-left: 1px solid #292929;
+ border-bottom: 1px solid #232323;
+ border-top: 1px solid #545454;
+}
+
+#nav li a:hover {
+ background: #2a0d65;
+ background: -moz-linear-gradient(top, #11032e, #2a0d65);
+ background: -webkit-gradient(linear, left top, left bottom, from(#11032e), to(#2a0d65));
+}
+
+
+/* Submenu */
+
+.hasChildren {
+	position: absolute;
+	width: 12px; height: 15px;
+    margin-bottom:7px;
+    background: url("http://static.s-sfr.fr/media/volet-puce.png");
+	right : 0;
+	bottom: 0;
+}
+
+#nav li ul {
+ display: none;
+ position: absolute;
+ left: 0;
+ top: 100%;
+ padding: 0; margin: 0;
+}
+
+#nav li:hover > ul {
+ display: block;
+}
+
+#nav li ul li, #nav li ul li a {
+ float: none;
+}
+
+#nav li ul li {
+ _display: inline; /* for IE6 */
+}
+
+#nav li ul li a {
+ width: 150px;
+ display: block;
+}
+
+/* SUBSUB Menu */
+
+#nav li ul li ul {
+ display: none;
+}
+
+#nav li ul li:hover ul {
+ left: 100%;
+ top: 0;
+}
+
+
+.label-version-detail {
+ text-align:left;
+ height:50px;
+}
+
+.label-version-detail > h3 {
+ color:rgb(226,0,26);
+}
+
+.content {
+ margin-left:7%;
+ width:93%;
+}
+
+#version-detail-progress {
+ height:30px;
+}
+
+.progress-value {
+ font-weight:bold;
+ margin-top:6px;
+}
+
+.progress-theme {
+ margin-top:19px
+}

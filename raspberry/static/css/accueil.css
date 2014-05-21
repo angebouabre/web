@@ -1,0 +1,6 @@
+body{ 
+    background-image:url('/static/img/bg-accueil.png') !important;
+    background-repeat: no-repeat;
+    background-position: center -5%;
+    background-size: 88% auto;
+}

@@ -13,7 +13,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 CUR_DIR = os.path.dirname(__file__)
-TEMPERATURE_TEMPLATE = os.path.join(CUR_DIR, os.pardir, 'mesure/templates/')
+MONITEUR_TEMPLATE = os.path.join(CUR_DIR, os.pardir, 'visualisation/templates/')
 STATIC_DIR = os.path.join(CUR_DIR, os.pardir, 'static')
 
 
@@ -40,7 +40,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mesure',
+    'moniteur',
+    'visualisation',
+    'bootstrap_toolkit',
+    'widget_tweaks',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -88,5 +92,6 @@ STATICFILES_DIRS = (
         STATIC_DIR,
 )
 
+TEMPLATE_DIRS = (MONITEUR_TEMPLATE,)
 
 STATIC_URL = '/static/'
