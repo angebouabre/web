@@ -35,9 +35,23 @@ class Capteur(models.Model):
     
     objects = CapteurManager()
     
+    ENTREPOT1 = 'ENTREPOT_1'
+    ENTREPOT2 = 'ENTREPOT_2'
+    ENTREPOT3 = 'ENTREPOT_3'
+    ENTREPOT4 = 'ENTREPOT_4'
+    
+    LOCAL_CHOICES = (
+        (ENTREPOT1, 'Entrepot 1'),
+        (ENTREPOT2, 'Entrepot 2'),
+        (ENTREPOT3, 'Entrepot 3'),
+        (ENTREPOT4, 'Entrepot 4'),
+    )
+    localisation= models.CharField(max_length=10,
+                                   choices=LOCAL_CHOICES,
+                                   default=ENTREPOT1)
+                                       
     nom_capteur = models.CharField(max_length=30, unique=True)
     marque = models.CharField(max_length=30, blank=True, null=True)
-    localisation = models.CharField(max_length=30, blank=True, null=True)
     type_mesure = models.CharField(max_length=30, blank=True, null=True)     
     date_activation = models.DateTimeField(blank=True, null=True)
     date_achat = models.DateField(blank=True, null=True)

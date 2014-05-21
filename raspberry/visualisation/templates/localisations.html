@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load widget_tweaks %}
+{% load custom_tags %}
 {% block title %}Localisations{% endblock %}
 
 
@@ -20,7 +21,7 @@
                   <a id="" class="" href="#"><img src="/static/img/batiment.png" style="height:90%; width:90%"/></a>
               </div>
               <div class="col-md-12">
-                  <a id="" class="" href="/mesure/localisation/{{capteur.localisation|cut:" "}}/">{{capteur.localisation}}</a>
+                  <a id="" class="" href="/mesure/localisation/{{capteur.localisation|cut:" "}}/">{{capteur.localisation|display_name}}</a>
               </div>
           </div>
       </div>
