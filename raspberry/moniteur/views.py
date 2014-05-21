@@ -16,13 +16,13 @@ class LocalisationView(ListView):
     context_object_name = 'capteurs'
     template_name = 'localisations.html'
 
-class DashBoardView(ListView):
+class EntrepotDetailView(ListView):
     model = Carte 
     context_object_name = 'cartes'
     template_name = 'dashboard.html'
 
     def get_context_data(self, **kwargs):
-        context = super(DashBoardView, self).get_context_data(**kwargs)
+        context = super(EntrepotDetailView, self).get_context_data(**kwargs)
        
         localisation = self.kwargs['localisation']
         capteurs = Capteur.objects.filter(localisation=localisation)
