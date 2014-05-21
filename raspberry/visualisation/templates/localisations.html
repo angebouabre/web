@@ -14,19 +14,19 @@
   <div class="col-md-10 col-md-offset-1" style="margin-top:1%; margin-bottom:1%;">
     <div class="row "style="background-color:white; border:solid 2px; border-color:black; margin-left:0px;">
 
-{% regroup capteurs by localisation as entrepots %}
-      {% for entrepot in entrepots %}      
-      <div class="col-md-3" style="border:solid 1px; border-color:black; color:black;">
-          <div class="row ">
-              <div class="col-md-12">
-                  <a id="" class="" href="/mesure/localisation/{{entrepot.grouper}}/"><img src="/static/img/batiment.png" style="height:90%; width:90%"/></a>
-              </div>
-              <div class="col-md-12">
-                  <a id="" class="" href="/mesure/localisation/{{entrepot.grouper}}/">{{entrepot.grouper|display_name}}</a>
-              </div>
-          </div>
-      </div>
-      {% endfor %}
+    {% regroup capteurs|dictsort:"localisation" by localisation as entrepots %}
+       {% for entrepot in entrepots %}      
+	      <div class="col-md-3" style="border:solid 1px; border-color:black; color:black;">
+		  <div class="row ">
+		      <div class="col-md-12">
+			  <a id="" class="" href="/mesure/localisation/{{entrepot.grouper}}/"><img src="/static/img/batiment.png" style="height:90%; width:90%"/></a>
+		      </div>
+		      <div class="col-md-12">
+			  <a id="" class="" href="/mesure/localisation/{{entrepot.grouper}}/">{{entrepot.grouper|display_name}}</a>
+		      </div>
+		  </div>
+	      </div>
+       {% endfor %}
     </div>
   </div>
 </div>

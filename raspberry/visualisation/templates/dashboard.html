@@ -14,13 +14,19 @@
   <div class="col-md-10 col-md-offset-1" style="margin-top:1%; margin-bottom:1%;">
     <div class="row "style="background-color:white; border:solid 2px; border-color:black; margin-left:0px;">
 
-      <div class="col-md-4" style="border:solid 1px; border-color:black; color:black;">
-          <div class="row ">
-              <div class="col-md-12">
-                  {% include "blocks/capteurs_list.html" %}
-              </div>
-          </div>
-      </div>
+       {% for capteur in capteurs %}      
+	      <div class="col-md-3" style="border:solid 1px; border-color:black; color:black;">
+		  <div class="row ">
+		      <div class="col-md-12">
+			  {% include "blocks/effects-thermometer-grow.html" %}
+		      </div>
+		      <div class="col-md-12">
+			  <a id="" class="" href="#">{{capteur.nom_capteur}}</a>
+		      </div>
+		  </div>
+	      </div>
+       {% endfor %}
+
     </div>
   </div>
 </div>

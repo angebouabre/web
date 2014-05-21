@@ -1,0 +1,20 @@
+<html>
+<head>
+    <script type="text/javascript" src="/static/RGraph/libraries/RGraph.common.core.js" ></script>
+    <script type="text/javascript" src="/static/RGraph/libraries/RGraph.thermometer.js" ></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<!-- content -->
+    <canvas id="{{capteur.nom_capteur|safe}}" width="70" height="350">[No canvas support]</canvas>
+    
+    <script>
+        $(document).ready(function ()
+        {
+            var thermometer = new RGraph.Thermometer('{{capteur.nom_capteur|safe}}', 0,50,25) //To introduce value instead 25
+                .set('colors', ['green'])
+                .grow();
+        })
+    </script>
+<!-- content -->
+</html>
