@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% load custom_tags %}
+{% block title %}Localisations{% endblock %}
+
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<h1>{{localisation}}</h1>
+<link href='http://fonts.googleapis.com/css?family=Special+Elite|Bitter' rel='stylesheet' type='text/css'>
+<div class="row" style="background-color:grey; border:solid 2px; border-color:black;color:white;">
+  <div class="col-md-10 col-md-offset-1" style="margin-top:1%; margin-bottom:1%;">
+    <div class="row "style="background-color:white; border:solid 2px; border-color:black; margin-left:0px;">
+
+       {% for capteur in capteurs %}      
+	      <div class="col-md-3" style="border:solid 1px; border-color:black; color:black;">
+		  <div class="row ">
+		      <div class="col-md-12">
+			  <h5>Temperature moyenne du <a id="" class="" href="#">{{capteur.nom_capteur}}</a></h5>
+		      </div>
+		  </div>
+		  <div class="row ">
+		      <div class="col-md-3">
+                          {% if capteur.type_mesure == 'temperature' %}
+			      <a id="" class="" href="#">{% include "blocks/thermometer.html" %}</a>
+                          {% else %}
+                              <a id="test" class="" href="#"><img src="/static/img/goutte-deau.png" style="width:85%"/></a>
+                          {% endif %}
+		      </div>
+		      <div class="col-md-9">
+		         <div class="row" style="margin-top:15%">
+			     <div class="col-md-12">
+			         <h5>Carte: {{capteur.carte}}</h5>
+			     </div>
+			     <div class="col-md-12">
+			         <h5>Date dernière mesure: 14 Avril 2014</h5>
+			     </div>
+			     <div class="col-md-12">
+			         <h5>Valeur Max: {{capteur.mes_max|floatformat:"2"}}</h5>
+			     </div>
+			     <div class="col-md-12">
+			         <h5>Valeur Moy: {{capteur.mes_moy|floatformat:"2"}}</h5>
+			     </div>
+			     <div class="col-md-12">
+			         <h5>Valeur Min: {{capteur.mes_min|floatformat:"2"}}</h5>
+			     </div>
+		         </div>
+		      </div>
+		  </div>
+	      </div>
+       {% endfor %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
