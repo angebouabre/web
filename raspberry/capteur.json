@@ -1,1 +1,0 @@
-[{"pk": 2, "model": "moniteur.capteur", "fields": {"type_mesure": "temperature", "date_achat": "2014-05-01", "localisation": "Batiment B", "marque": "w-1", "date_activation": "2014-05-20T15:57:55", "nom_capteur": "capteur2", "carte": ["vegetta"]}}]
