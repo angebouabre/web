@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Avg, Max, Min
 
 # Create your views here.
 
@@ -19,15 +20,27 @@ class LocalisationView(ListView):
 class EntrepotDetailView(ListView):
     model = Carte 
     context_object_name = 'cartes'
-    template_name = 'dashboard.html'
+    template_name = 'entrepot-detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(EntrepotDetailView, self).get_context_data(**kwargs)
        
         localisation = self.kwargs['localisation']
         capteurs = Capteur.objects.filter(localisation=localisation)
+        
+        mesures = Mesure.objects.filter(capteur__in=capteurs)
+        for capteur in capteurs:
+            capteur.mesures = mesures.filter(capteur=capteur)
+            stats = capteur.mesures.aggregate(Avg('valeur'), Max('valeur'), Min('valeur'))
+            capteur.mes_moy = stats['valeur__avg']
+            capteur.mes_max = stats['valeur__max']
+            capteur.mes_min = stats['valeur__min']
+            print capteur, capteur.type_mesure
+            print capteur.mesures 
+            print stats
+             
         context['capteurs'] = capteurs 
-
+        context['localisation'] = localisation 
         return context
 
 #    def get_context_data(self, **kwargs):
