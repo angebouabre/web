@@ -14,6 +14,8 @@ class Carte(models.Model):
     
     objects = CarteManager()
 
+    slug = models.SlugField(max_length=30, unique=True, blank=True)
+    
     nom_carte = models.CharField(max_length=30, unique=True)
     type_carte = models.CharField(max_length=30, blank=True, null=True)
     mac = models.CharField(max_length=30, blank=True, null=True)
@@ -22,6 +24,10 @@ class Carte(models.Model):
     
     def __unicode__(self):
         return u"%s" % self.nom_carte
+
+    def save(self, **kwargs):
+        self.slug = self.nom_carte
+        super(Carte, self).save()
 
     def natural_key(self):
         return (self.nom_carte)
@@ -34,6 +40,8 @@ class CapteurManager(models.Manager):
 class Capteur(models.Model):
     
     objects = CapteurManager()
+    
+    slug = models.SlugField(max_length=30, unique=True, blank=True)
     
     ENTREPOT1 = 'ENTREPOT_1'
     ENTREPOT2 = 'ENTREPOT_2'
@@ -59,6 +67,10 @@ class Capteur(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.nom_capteur
+
+    def save(self, **kwargs):
+        self.slug = self.nom_capteur
+        super(Capteur, self).save()
 
     def natural_key(self):
         return (self.nom_capteur)

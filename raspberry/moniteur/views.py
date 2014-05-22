@@ -18,8 +18,8 @@ class LocalisationView(ListView):
     template_name = 'localisations.html'
 
 class EntrepotDetailView(ListView):
-    model = Carte 
-    context_object_name = 'cartes'
+    model = Capteur 
+    context_object_name = 'capteurs'
     template_name = 'entrepot-detail.html'
 
     def get_context_data(self, **kwargs):
@@ -43,5 +43,21 @@ class EntrepotDetailView(ListView):
         context['localisation'] = localisation 
         return context
 
-#    def get_context_data(self, **kwargs):
+
+class CarteDetailView(DetailView):
+    model = Carte
+    context_object_name = 'carte'
+    template_name = 'carte-detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(CarteDetailView, self).get_context_data(**kwargs)
+        
+        carte = self.kwargs['slug']
+        print type(carte)
+        carte = Carte.objects.filter(nom_carte=carte)
+        capteurs = Capteur.objects.filter(carte=carte)
+        
+
+        context['capteurs'] = capteurs
+        return context
 

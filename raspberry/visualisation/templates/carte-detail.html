@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% load custom_tags %}
+{% block title %}{{carte.nom_carte}} Details{% endblock %}
+
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<link href='http://fonts.googleapis.com/css?family=Special+Elite|Bitter' rel='stylesheet' type='text/css'>
+<div class="row" style="background-color:grey; border:solid 2px; border-color:black;">
+  <div class="col-md-10 col-md-offset-1" style="margin-top:1%; margin-bottom:1%;">
+    <div class="row "style="background-color:white; border:solid 2px; border-color:black; margin-left:0px;">
+	      <div class="col-md-4" style="border:solid 1px; border-color:black; color:black;">
+		  <div class="row ">
+		      <div class="col-md-12">
+			    <h4>Nom Carte: {{carte.slug}}</h4>
+		      </div>
+		  </div>
+	      </div>
+    </div>
+    <div class="row "style="background-color:white; border:solid 2px; border-color:black; margin-left:0px;">
+
+       {% for capteur in capteurs %}      
+	    {{capteur.nom_capteur}} 
+       {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
