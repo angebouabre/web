@@ -15,18 +15,20 @@ class Carte(models.Model):
 
     slug = models.SlugField(max_length=30, unique=True, blank=True)
     
-    HYGROMETRIE = 'Hygrometrie'
-    TEMPERATURE = 'Temperature'
+    RASPBERRY = 'Raspberry'
+    ARDUINO = 'Arduino'
+    DALLAS = 'Dallas'
     
-    CAPTEUR_TYPE = (
-        (HYGROMETRIE, 'Hygrometrie'),
-        (TEMPERATURE, 'Temperature'),
+    CARTE_TYPE = (
+        (RASPBERRY, 'Raspberry'),
+        (ARDUINO, 'Arduino'),
+        (DALLAS, 'Dallas'),
     )
 
     nom_carte = models.CharField(max_length=30, unique=True)
     type_carte = models.CharField(max_length=12,
-                                   choices=CAPTEUR_TYPE,
-                                   default=TEMPERATURE,
+                                   choices=CARTE_TYPE,
+                                   default=RASPBERRY,
                                    blank=True,
                                    null=True)
     mac = models.CharField(max_length=30, blank=True, null=True)
@@ -65,13 +67,26 @@ class Capteur(models.Model):
         (ENTREPOT3, 'Entrepot 3'),
         (ENTREPOT4, 'Entrepot 4'),
     )
+    
+    HYGROMETRIE = 'Hygrometrie'
+    TEMPERATURE = 'Temperature'
+    
+    MESURE_TYPE = (
+        (HYGROMETRIE, 'Hygrometrie'),
+        (TEMPERATURE, 'Temperature'),
+    )
+
     localisation= models.CharField(max_length=10,
                                    choices=LOCAL_CHOICES,
                                    default=ENTREPOT1)
+    type_mesure = models.CharField(max_length=12,
+                                   choices=MESURE_TYPE,
+                                   default=TEMPERATURE,
+                                   blank=True,
+                                   null=True)
                                        
     nom_capteur = models.CharField(max_length=30, unique=True)
     marque = models.CharField(max_length=30, blank=True, null=True)
-    type_mesure = models.CharField(max_length=30, blank=True, null=True)     
     date_activation = models.DateTimeField(blank=True, null=True)
     date_achat = models.DateField(blank=True, null=True)
     carte = models.ForeignKey(Carte)
