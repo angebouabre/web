@@ -19,21 +19,21 @@
 					<div class="panel panel-primary mouseentrepot col-md-11 col-md-offset-1">
 						<div class="panel-heading"><center>{{capteur.nom_capteur}}</center></div>
 						<div class="panel-body ">
-						{% if capteur.type_mesure == 'Temperature' %}
-								<div class="col-md-3">
-										<a id="" class="" href="#">{% include "blocks/thermometer.html" %}</a>									
-								</div>
-								<div class="col-md-9">
-									<h1 class="affichetemp">25 °</h1>
-								</div>
-						{% else  %}
-								<div class="col-md-9">
-										<a id="" class="" href="#">{% include "blocks/hygrometrie.html" %}</a>
-								</div>
-								<div class="col-md-3">
-									<h5 class="affichetemp">25%</h5>
-								</div>
-						{% endif %}
+							{% if capteur.type_mesure == 'Temperature' %}
+									<div class="col-md-3">
+											<a id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{% include "blocks/thermometer.html" %}</a>									
+									</div>
+									<div class="col-md-9">
+										<h1 class="affichetemp">{{ capteur.last_mesure.valeur }}°</h1>
+									</div>
+							{% else  %}
+									<div class="col-md-9">
+											<a id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{% include "blocks/hygrometrie.html" %}</a>
+									</div>
+									<div class="col-md-3">
+										<h5 class="affichetemp">{{ capteur.last_mesure.valeur }}%</h5>
+									</div>
+							{% endif %}
 						</div>
 					</div>				  
 				</div>
@@ -41,15 +41,18 @@
 			{% endfor %}
 		</div>
 	</div>
+	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="panel panel-success">
-				<div class="panel-heading"><center>Entrepot Health</center></div>
-				<div class="panel-body">
-					Panel content
+				<div class="panel-heading"><center>Entrepot Monitoring</center></div>
+				<div id="entrstats" class=" panel-body">
+					<div id="line-example"></div>
+					{% include "blocks/entrepot_stats.html" %}
 				</div>
-			  <div class="panel-footer">Panel footer</div>
+			  <div class="panel-footer"><center>Statistiques sur tous les capteurs disponibles sur cet entrepot</center></div>
 			</div>
 		</div>
+	</div>
 
 {% endblock %}
 
