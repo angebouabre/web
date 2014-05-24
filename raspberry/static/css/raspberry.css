@@ -8,4 +8,9 @@ body , .mouseentrepot{
 .panel{
 	padding:0px;
 }
-
+h1{
+	font-family: 'Oswald', sans-serif;
+}
+.hygrometrie{
+	background-color: url(/static/img/goutte-deau1.png);
+}

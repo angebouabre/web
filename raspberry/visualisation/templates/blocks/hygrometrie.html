@@ -1,0 +1,25 @@
+<html>
+<head>
+    <script type="text/javascript" src="/static/RGraph/libraries/RGraph.common.core.js" ></script>
+    <script type="text/javascript" src="/static/RGraph/libraries/RGraph.common.dynamic.js" ></script>
+    <script type="text/javascript" src="/static/RGraph/libraries/RGraph.common.tooltips.js" ></script>
+    <script type="text/javascript" src="/static/RGraph/libraries/RGraph.gauge.js" ></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<!-- content -->
+    <!-- 2/3. This is the canvas that the graph is drawn on -->
+    <canvas id="cvs" width="200" height="200">[No canvas support]</canvas>
+
+    <!--
+        3/3. This creates and displays the graph. As it is here, you can call this from the window.onload event,
+             allowing you to put it in your pages header.
+    -->
+    <script>
+        $(document).ready(function ()
+        {
+            var gauge = new RGraph.Gauge('cvs', 0, 100, 78)
+                .draw();
+        })
+    </script>
+</html>

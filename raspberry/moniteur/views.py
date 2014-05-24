@@ -30,14 +30,16 @@ class EntrepotDetailView(ListView):
         
         mesures = Mesure.objects.filter(capteur__in=capteurs)
         for capteur in capteurs:
-            capteur.mesures = mesures.filter(capteur=capteur)
+            capteur.mesures = mesures.filter(capteur=capteur).order_by("date_mesure")
             stats = capteur.mesures.aggregate(Avg('valeur'), Max('valeur'), Min('valeur'))
             capteur.mes_moy = stats['valeur__avg']
             capteur.mes_max = stats['valeur__max']
             capteur.mes_min = stats['valeur__min']
+            capteur.mes_last = capteur.mesures.last()
             print capteur, capteur.type_mesure
             print capteur.mesures 
             print stats
+            print capteur.mes_last
              
         context['capteurs'] = capteurs 
         context['localisation'] = localisation 

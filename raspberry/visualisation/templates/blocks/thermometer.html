@@ -8,12 +8,12 @@
 </head>
 
 <!-- content -->
-    <canvas id="{{capteur.nom_capteur|safe}}" width="70" height="350">[No canvas support]</canvas>
+    <canvas id="{{capteur.nom_capteur|safe}}" width="70" height="200">[No canvas support]</canvas>
     
     <script>
         $(document).ready(function ()
         {
-            var thermometer = new RGraph.Thermometer('{{capteur.nom_capteur|safe}}', -50,50,{{capteur.mes_moy}}) //To introduce value instead 25
+            var thermometer = new RGraph.Thermometer('{{capteur.nom_capteur|safe}}', -50,50,25) //To introduce value instead 25
                 .set('colors', ['green'])
                 .set('tooltips.event', 'onmousemove')
                 .set('tooltips', ["test <b style='color:red'>ça</b> ici"])
