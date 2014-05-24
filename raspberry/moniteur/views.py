@@ -41,6 +41,8 @@ class EntrepotDetailView(ListView):
             print capteur, capteur.type_mesure
             print capteur.mesures 
         
+
+        context['mesures'] = mesures
         context['capteurs'] = capteurs 
         context['localisation'] = localisation 
         return context
