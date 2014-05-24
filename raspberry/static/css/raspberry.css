@@ -1,0 +1,11 @@
+body , .mouseentrepot{
+ background-color:#D0EAF5;
+}
+.mouseentrepot:hover {
+ background-color:#54C4F0;
+}
+
+.panel{
+	padding:0px;
+}
+
