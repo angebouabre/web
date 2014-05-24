@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
 	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 	<div class="container-fluid">
 		<h1><center>{{localisation | display_name}}</center></h1>
@@ -50,6 +51,77 @@
 			  <div class="panel-footer">Panel footer</div>
 			</div>
 		</div>
+=======
+<link href='http://fonts.googleapis.com/css?family=Special+Elite|Bitter' rel='stylesheet' type='text/css'>
+<h1 style='font-family:Bitter'>{{localisation | display_name}}</h1>
+<div class="row" style="background-color:grey; border:solid 2px; border-color:black;color:white;">
+  <div class="col-md-10 col-md-offset-1" style="margin-top:1%; margin-bottom:1%;">
+    <div class="row "style="background-color:white; border:solid 2px; border-color:black; margin-left:0px;">
+
+       {% for capteur in capteurs %}      
+	      <div class="col-md-3" style="border:solid 1px; border-color:black; color:black;">
+		  <div class="row ">
+		      <div class="col-md-12">
+			  <h5>Temperature moyenne du <a id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{{capteur.nom_capteur}}</a></h5>
+		      </div>
+		  </div>
+                  {% if capteur.type_mesure == 'Temperature' %}
+		  <div class="row ">
+		      <div class="col-md-3">
+			      <a id="" class="" href="#">{% include "blocks/thermometer.html" %}</a>
+		      </div>
+		      <div class="col-md-9">
+		         <div class="row" style="margin-top:15%">
+			     <div class="col-md-12">
+			         <h5>Carte: <a id="" class="" href="/mesure/carte/{{capteur.carte}}">{{capteur.carte}}</a></h5>
+			     </div>
+			     <div class="col-md-12">
+			         <h5>Date dernière mesure: {{capteur.last_mesure.date_mesure}}</h5>
+			         <h5>Valeur dernière mesure: {{capteur.last_mesure.valeur}}</h5>
+			     </div>
+			     <div class="col-md-12">
+			         <h5>Valeur Max: {{capteur.mes_max|floatformat:"2"}}</h5>
+			     </div>
+			     <div class="col-md-12">
+			         <h5>Valeur Moy: {{capteur.mes_moy|floatformat:"2"}}</h5>
+			     </div>
+			     <div class="col-md-12">
+			         <h5>Valeur Min: {{capteur.mes_min|floatformat:"2"}}</h5>
+			     </div>
+		         </div>
+		      </div>
+		  </div>
+                  {% else %}
+		  <div class="row ">
+		      <div class="col-md-12" style="background-image: url(/static/img/goutte-deau1.png); width:100%; height:178px;background-repeat:no-repeat;background-position:50% 50%;"><h3 style="margin-top:50%; font-family: Special Elite">{{capteur.mes_moy|floatformat:"2"}} % </h3>
+		      </div>
+		  </div>
+		  <div class="row">
+		      <div class="col-md-12">
+			  <h5>Carte: <a id="" class="" href="/mesure/carte/{{capteur.carte}}">{{capteur.carte}}</a></h5>
+		      </div>
+		      <div class="col-md-12">
+		          <h5>Date dernière mesure: 14 Avril 2014</h5>
+		      </div>
+		      <div class="col-md-12">
+		          <h5>Valeur Max: {{capteur.mes_max|floatformat:"2"}}</h5>
+		      </div>
+		      <div class="col-md-12">
+		          <h5>Valeur Moy: {{capteur.mes_moy|floatformat:"2"}}</h5>
+		      </div>
+		      <div class="col-md-12">
+		          <h5>Valeur Min: {{capteur.mes_min|floatformat:"2"}}</h5>
+		      </div>
+		  </div>
+                  
+                  {% endif %}
+	      </div>
+       {% endfor %}
+
+    </div>
+  </div>
+</div>
+>>>>>>> master
 {% endblock %}
 
 {% block footer %}

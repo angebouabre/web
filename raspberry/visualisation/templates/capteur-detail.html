@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% load custom_tags %}
+{% block title %}Localisations{% endblock %}
+
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<link href='http://fonts.googleapis.com/css?family=Special+Elite|Bitter' rel='stylesheet' type='text/css'>
+<div class="row" style="background-color:grey; border:solid 2px; border-color:black;">
+  <div class="col-md-10 col-md-offset-1" style="margin-top:1%; margin-bottom:1%;">
+    <div class="row "style="background-color:white; border:solid 2px; border-color:black; margin-left:0px;">
+	      <div class="col-md-3" style="border:solid 1px; border-color:black; color:black;">
+		  <div class="row ">
+		      <div class="col-md-12">
+			     <p>Nom capteur: {{capteur.nom_capteur}}</p>
+		      </div>
+		      <div class="col-md-12">
+			     <p>Localisation: {{capteur.localisation}}</p>
+		      </div>
+		      <div class="col-md-12">
+			     <p>Marque: {{capteur.marque}}</p>
+		      </div>
+		      <div class="col-md-12">
+			     <p>Date Activation: {{capteur.date_activation}}</p>
+		      </div>
+		      <div class="col-md-12">
+			     <p>Date Achat: {{capteur.date_achat}}</p>
+		      </div>
+		      <div class="col-md-12">
+			     <p>Type Mesure: {{capteur.type_mesure}}</p>
+		      </div>
+		  </div>
+	      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
