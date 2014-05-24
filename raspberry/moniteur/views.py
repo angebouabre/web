@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 from django.shortcuts import render
 from django.db.models import Avg, Max, Min
 
@@ -61,6 +65,17 @@ class CapteurDetailView(DetailView):
 
         return context
        
+
+
+class CarteListView(ListView):
+    model = Carte
+    context_object_name = 'cartes'
+    template_name = 'cartes-list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CarteListView, self).get_context_data(**kwargs)
+
+        return context
 
 
 

@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from django import template
 register = template.Library()
 
@@ -9,3 +12,12 @@ def display_name(nom):
     except:
         nom = None
     return nom 
+
+
+@register.filter(name='display_state')
+def display_state(state):
+    if state == True: 
+        state = "Activé"
+    else:
+        state = "Désactivé"
+    return state 
