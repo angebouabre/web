@@ -19,7 +19,7 @@
 	      <div class="col-md-3" style="border:solid 1px; border-color:black; color:black;">
 		  <div class="row ">
 		      <div class="col-md-12">
-			  <h5>Temperature moyenne du <a id="" class="" href="#">{{capteur.nom_capteur}}</a></h5>
+			  <h5>Temperature moyenne du <a id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{{capteur.nom_capteur}}</a></h5>
 		      </div>
 		  </div>
                   {% if capteur.type_mesure == 'Temperature' %}
@@ -33,7 +33,8 @@
 			         <h5>Carte: <a id="" class="" href="/mesure/carte/{{capteur.carte}}">{{capteur.carte}}</a></h5>
 			     </div>
 			     <div class="col-md-12">
-			         <h5>Date dernière mesure: 14 Avril 2014</h5>
+			         <h5>Date dernière mesure: {{capteur.last_mesure.date_mesure}}</h5>
+			         <h5>Valeur dernière mesure: {{capteur.last_mesure.valeur}}</h5>
 			     </div>
 			     <div class="col-md-12">
 			         <h5>Valeur Max: {{capteur.mes_max|floatformat:"2"}}</h5>
