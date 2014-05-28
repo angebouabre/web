@@ -38,9 +38,10 @@ class EntrepotDetailView(ListView):
         for capteur in capteurs:
             capteur.mesures = mesures.filter(capteur=capteur)
             capteur.last_mesure = capteur.mesures.last()
-            print capteur, capteur.type_mesure
-            print capteur.mesures 
-        
+            print capteur.nom_capteur, capteur.last_mesure
+
+        #for mesure in mesures:
+        #    print mesure.capteur, mesure.capteur.type_mesure, mesure.valeur
 
         context['mesures'] = mesures
         context['capteurs'] = capteurs 

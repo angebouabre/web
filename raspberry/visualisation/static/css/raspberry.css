@@ -1,8 +1,8 @@
 body , .mouseentrepot{
- background-color:#D0EAF5;
+ background-color:white;
 }
 .mouseentrepot:hover {
- background-color:#54C4F0;
+ background-color:grey;
 }
 
 .panel{
@@ -10,7 +10,4 @@ body , .mouseentrepot{
 }
 h1{
 	font-family: 'Oswald', sans-serif;
-}
-.hygrometrie{
-	background-color: url(/static/img/goutte-deau1.png);
 }

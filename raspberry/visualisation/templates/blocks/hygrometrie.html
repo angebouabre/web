@@ -7,19 +7,21 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 
-<!-- content -->
-    <!-- 2/3. This is the canvas that the graph is drawn on -->
-    <canvas id="cvs" width="200" height="200">[No canvas support]</canvas>
-
-    <!--
-        3/3. This creates and displays the graph. As it is here, you can call this from the window.onload event,
-             allowing you to put it in your pages header.
-    -->
+    <canvas id="{{capteur.nom_capteur|safe}}" width="200" height="200" style="background-color: grey;"></canvas>
     <script>
         $(document).ready(function ()
         {
-            var gauge = new RGraph.Gauge('cvs', 0, 100, {{ capteur.last_mesure.valeur }})
-                .draw();
+            var gauge = new RGraph.Gauge('{{capteur.nom_capteur|safe}}', 0, 100, {{ capteur.last_mesure.valeur }})
+                .set('background.color', 'white')
+                .set('colors.ranges', ['green'])
+                .set('needle.colors', ['red'])
+                .set('text.color', 'green')
+                .set('title.top', 'H')
+                .set('title.top.color', 'black')
+                
+                //.set('tooltips.event', 'onmousemove')
+                //.set('tooltips', ["test <b style='color:red'>ça</b> ici"])
+                .grow();
         })
     </script>
 </html>

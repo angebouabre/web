@@ -8,7 +8,7 @@
 </head>
 
 <!-- content -->
-    <canvas id="{{capteur.nom_capteur|safe}}" width="70" height="200">[No canvas support]</canvas>
+    <canvas id="{{capteur.nom_capteur|safe}}" width="70" height="200"></canvas>
     
     <script>
         $(document).ready(function ()
@@ -16,6 +16,7 @@
             var thermometer = new RGraph.Thermometer('{{capteur.nom_capteur|safe}}', -50,50,{{ capteur.last_mesure.valeur }}) //To introduce value instead 25
                 .set('colors', {% if capteur.last_mesure.valeur > 4 %}['red'] {% else %} ['green']{% endif %})
                 .set('tooltips.event', 'onmousemove')
+                //.set('tooltips', ["test <b style='color:red'>ça</b> ici"])
                 .grow();
         })
     </script>
