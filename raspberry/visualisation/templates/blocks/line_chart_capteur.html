@@ -1,72 +1,35 @@
+{% load custom_tags %}
+
+<!DOCTYPE html>
 <html>
 <head>
-    <script src="/static/RGraph/libraries/RGraph.common.core.js" ></script>
-    <script src="/static/RGraph/libraries/RGraph.drawing.yaxis.js" ></script>
-    <script src="/static/RGraph/libraries/RGraph.drawing.xaxis.js" ></script>
-    <script src="/static/RGraph/libraries/RGraph.line.js" ></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+    <!--script type="text/javascript" src="/static/morris/raphael-min.js" ></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/static/morris/morris.min.js" ></script-->
+    <meta charset=utf-8 />
+	<div id="line-chart-hygro"></div>
 </head>
-    <canvas id="cvs" width="600" height="350"></canvas>
     <script>
-        $(document).ready(function ()
-        {
-            var data = [19,13,5,-4,-6,-1,3];
-            var context = document.getElementById("cvs").getContext('2d');
-            
-            // Draw the background grid manually
-            context.strokeStyle = '#eee';
-            for (var i=25; i<=575; i+=25) context.strokeRect(i + 0.5, 25, 0, 300);
-            for (var i=25; i<=325; i+=25) context.strokeRect(25, i + 0.5, 550, 0);
-
-
-
-            // Draw the top Y axis
-            var top_yaxis = new RGraph.Drawing.YAxis('cvs', 25)
-                .set('max', 20)
-                .set('numticks', 4)
-                .set('numlabels', 4)
-                .set('gutter.top', 25)
-                .set('gutter.bottom', 125)
-                .draw();
-
-            // Draw the bottom Y axis
-            var bottom_yaxis = new RGraph.Drawing.YAxis('cvs', 25)
-                .set('max', 10)
-                .set('gutter.top', 225)
-                .set('gutter.bottom', 25)
-                .set('scale.invert', true)
-                .set('numlabels', 2)
-                .set('numticks', 2)
-                .set('noendtick.top', true)
-                .set('scale.zerostart', false)
-                .set('units.pre', '-')
-                .draw();
-            
-            // Draw the X axis
-            var xaxis = new RGraph.Drawing.XAxis('cvs', 225)
-                .set('xaxispos', 'center')
-                .set('labels', ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'])
-                .set('labels.position', 'edge')
-                .set('numticks', 0)
-                .set('hmargin', 25)
-                .set('text.color', '#666')
-                .draw();
-
-
-            
-            // Draw the line chart
-            var line = new RGraph.Line('cvs', data)
-                .set('hmargin', 25)
-                .set('gutter.bottom', 125)
-                .set('outofbounds', true)
-                .set('linewidth', 2)
-                .set('ylabels', false)
-                .set('noaxes', true)
-                .set('background.grid', false)
-                .set('colors', ['gray'])
-                .set('ymax', 20)
-                .draw();
-        })
+		Morris.Line({
+		  element: 'line-chart-hygro',
+		  data: [
+		  {% for mesure in mesures %}
+			{ x: '{{mesure.date_mesure | safe}}', a: {{mesure.valeur | safe}}},
+		  {% endfor %} 
+		  ],
+		  xkey: 'x',
+		  ykeys: ['a'],
+		  labels: ['Temperature',],
+		  lineWidth:2,
+		  pointSize:2,
+		  goals: [1.0, -1.0],
+		  goalLineColors:['red', 'red'],
+		  continuousLine:true,
+		  smooth:false,
+		});
     </script>
 </html>
 

@@ -70,6 +70,7 @@ class CapteurDetailView(DetailView):
         capteur.last_mesure = mesures.last()
        
         context['capteur'] = capteur 
+        context['mesures'] = mesures 
         return context
        
 
