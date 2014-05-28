@@ -1,9 +1,10 @@
 body , .mouseentrepot{
  background-color:white;
 }
-.mouseentrepot:hover {
+
+/*.mouseentrepot:hover {
  background-color:grey;
-}
+}*/
 
 .panel{
 	padding:0px;

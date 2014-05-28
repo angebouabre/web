@@ -53,12 +53,12 @@
                             <div class="panel panel-primary mouseentrepot col-md-12">
                                 <div class="panel-heading"><center>{{capteur.nom_capteur}}</center></div>
                                 <div class="panel-body ">
-									<div class="col-md-9">
-											<a id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{% include "blocks/hygrometrie.html" %}</a>
-									</div>
-									<div class="col-md-3">
-										<h5 class="affichetemp">{{ capteur.last_mesure.valeur }}%</h5>
-									</div>
+				    <div class="col-md-9">
+				        <a id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{% include "blocks/hygrometrie.html" %}</a>
+				    </div>
+				    <div class="col-md-3">
+				        {{ capteur.last_mesure.valeur }}%
+				    </div>
                                 </div>
                             </div>				  
                         </div>

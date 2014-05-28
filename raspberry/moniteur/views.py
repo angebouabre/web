@@ -58,15 +58,18 @@ class CapteurDetailView(DetailView):
         context = super(CapteurDetailView, self).get_context_data(**kwargs)
         
         capteur = self.kwargs['slug']
-        capteur = Capteur.objects.filter(slug=capteur)
+        capteur = Capteur.objects.get(slug=capteur)
         
         mesures = Mesure.objects.filter(capteur=capteur)
         stats = mesures.aggregate(Avg('valeur'), Max('valeur'), Min('valeur'))
         
+        print mesures 
         capteur.mes_moy = stats['valeur__avg']
         capteur.mes_max = stats['valeur__max']
         capteur.mes_min = stats['valeur__min']
-
+        capteur.last_mesure = mesures.last()
+       
+        context['capteur'] = capteur 
         return context
        
 
