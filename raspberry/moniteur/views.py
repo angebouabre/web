@@ -23,6 +23,7 @@ class LocalisationView(ListView):
     template_name = 'localisations.html'
 
 class EntrepotDetailView(ListView):
+    #TODO Filter by date or last number of measures
     model = Capteur 
     context_object_name = 'capteurs'
     template_name = 'entrepot-detail.html'
@@ -50,6 +51,7 @@ class EntrepotDetailView(ListView):
 
 
 class CapteurDetailView(DetailView):
+    #TODO Filter by date or last number of measures
     model = Capteur
     context_object_name = 'capteur'
     template_name = 'capteur-detail.html'
@@ -63,14 +65,13 @@ class CapteurDetailView(DetailView):
         mesures = Mesure.objects.filter(capteur=capteur)
         stats = mesures.aggregate(Avg('valeur'), Max('valeur'), Min('valeur'))
         
-        print mesures 
         capteur.mes_moy = stats['valeur__avg']
         capteur.mes_max = stats['valeur__max']
         capteur.mes_min = stats['valeur__min']
         capteur.last_mesure = mesures.last()
        
         context['capteur'] = capteur 
-        context['mesures'] = mesures 
+        context['mesures'] = mesures.order_by('-date_mesure')[:5]
         return context
        
 
