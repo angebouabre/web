@@ -17,6 +17,11 @@ from moniteur.models import *
 #from datetime import date, timedelta
 
 
+import nmap
+import subprocess
+
+#subprocess.check_call(["python","/home/bouable/esigetel/web/raspberry/raspberry/dmon.py"])
+
 class LocalisationView(ListView):
     model = Capteur 
     context_object_name = 'capteurs'
@@ -84,6 +89,7 @@ class CarteListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(CarteListView, self).get_context_data(**kwargs)
 
+
         return context
 
 
@@ -97,11 +103,32 @@ class CarteDetailView(DetailView):
         context = super(CarteDetailView, self).get_context_data(**kwargs)
         
         carte = self.kwargs['slug']
-        print type(carte)
-        carte = Carte.objects.filter(nom_carte=carte)
+        carte = Carte.objects.get(nom_carte=carte)
         capteurs = Capteur.objects.filter(carte=carte)
+         
+        carte.status = "down"  #Initialize status and ip to down and None
+        carte.ip = None
+        try:
+            openedFile = open("/home/bouable/esigetel/web/raspberry/raspberry/info.txt")
         
-
+            mac = None
+            for line in openedFile:
+                if 'MAC_ADDRESS=' in line:
+                    mac = line.split('=')[1].rstrip()
+                if 'IP_ADDRESS=' in line:
+                    ip = line.split('=')[1].rstrip()
+                if 'STATUS=' in line:
+                    status = line.split('=')[1].rstrip()
+                if 'DERNIER_NMAP=' in line:
+                    last_nmap = line.split('=')[1].rstrip()
+    
+ 	        if mac == carte.mac:
+	            carte.ip = ip 
+		    carte.status = status
+        except:
+            last_nmap = "No network" 
+        context['last_nmap'] = last_nmap
+        context['carte'] = carte
         context['capteurs'] = capteurs
         return context
 

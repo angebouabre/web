@@ -9,6 +9,9 @@
 {% endblock %}
 
 {% block content %}
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta http-equiv="refresh" content="15" />
+
 <a id="" class="" href="/mesure/localisation">home</a>
 <link href='http://fonts.googleapis.com/css?family=Special+Elite|Bitter' rel='stylesheet' type='text/css'>
 <div class="row" style="background-color:grey; border:solid 2px; border-color:black;">
@@ -19,6 +22,12 @@
 		      <div class="col-md-12">
 			    <h4>Nom Carte: {{carte.slug}}</h4>
 			    <h4>Activé: {{carte.is_activated|display_state}}</h4>
+			    <h4>Type Carte: {{carte.type_carte}}</h4>
+			    <h4>MAC: {{carte.mac}}</h4>
+			    <h4>Mémoire: {{carte.memoire_disque}}</h4>
+			    <h4>Etat Service: {{carte.status}}</h4>
+			    <h4>IP actuelle: {{carte.ip}}</h4>
+			    <h4>Dernière Vérification: {{last_nmap}}</h4>
 		      </div>
 		  </div>
 	      </div>
