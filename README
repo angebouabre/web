@@ -1,0 +1,15 @@
+#VM to Bridge Mode
+
+
+#Dependances to install:
+
+BASE:
+apt-get install nginx
+apt-get install uwgsi
+apt-get install uwgsi-plugin-python
+apt-get install virtualenv
+
+
+
+
+apt-get install python-nmap
