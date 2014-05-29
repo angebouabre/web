@@ -127,6 +127,16 @@ class CarteDetailView(DetailView):
 		    carte.status = status
         except:
             last_nmap = "No network" 
+        
+
+        mesures = Mesure.objects.filter(capteur__in=capteurs)
+        
+        for capteur in capteurs:
+            capteur.mesures = mesures.filter(capteur=capteur)
+            capteur.last_mesure = capteur.mesures.last()
+            print capteur.nom_capteur, capteur.last_mesure
+
+        context['capteurs'] = capteurs 
         context['last_nmap'] = last_nmap
         context['carte'] = carte
         context['capteurs'] = capteurs
