@@ -100,7 +100,14 @@ class CarteDetailView(DetailView):
     model = Carte
     context_object_name = 'carte'
     template_name = 'carte-detail.html'
-    
+
+    def post(self, request, *args, **kwargs):
+        
+        a = self.request.POST.get('test', False)
+        print a
+              
+        return super(CarteDetailView, self).get(request, *args, **kwargs)   
+ 
     def get_context_data(self, **kwargs):
         context = super(CarteDetailView, self).get_context_data(**kwargs)
         
@@ -130,7 +137,7 @@ class CarteDetailView(DetailView):
                     carte.ip = ip 
                     carte.status = status
                 else:
-                    print "no"
+                   pass 
         except:
             last_nmap = "No network" 
         

@@ -1,7 +1,11 @@
 {% load custom_tags %}
 
 <div class="list-group">
-    <a href="" class="list-group-item">Nom Carte: {{carte.slug}}</a>
+    <a href="" class="list-group-item">Nom Carte: {{carte.slug}}  
+        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+        Editer
+        </button>
+    </a>
     <a href="" class="list-group-item">Type Carte: {{carte.type_carte}}</a>
     <a href="" class="list-group-item">Activé: {{carte.is_activated|display_state}}</a>
     <a href="" class="list-group-item">MAC: {{carte.mac}}</a>

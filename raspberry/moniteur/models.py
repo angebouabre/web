@@ -38,6 +38,10 @@ class Carte(models.Model):
     def __unicode__(self):
         return u"%s" % self.nom_carte
 
+    def get_absolute_url(self):
+        return "/mesure/carte/%s" %self.slug
+
+
     def save(self, **kwargs):
         self.slug = self.nom_carte
         super(Carte, self).save()
