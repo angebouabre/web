@@ -18,6 +18,10 @@ def display_name(nom):
 def display_state(state):
     if state == True: 
         state = "Activé"
-    else:
+    elif state == False:
         state = "Désactivé"
+    elif state == "up":
+        state = "Connecté"
+    elif state == "down":
+        state = "Déconnecté"
     return state 

@@ -1,13 +1,19 @@
 #!/usr/bin/python
 import time
+import os 
 import subprocess
 import nmap
 from datetime import datetime
+ 
+cur =  os.getcwd()
+nmap_info_file = cur+"/info.txt"
+
+print nmap_info_file
 
 def check_service():
     while True:
         data="\n"
-        print("It works...")
+        print("Scanning Network...")
         nm = nmap.PortScanner()
         nm.scan(hosts="192.168.1.0/24", arguments='-sP')
         # a = subprocess.check_output(["nmap","-sP","192.168.1.0/24"])
@@ -28,11 +34,11 @@ def check_service():
                 else:
                     mac = None
                 data = data + "MAC_ADDRESS=%s\nIP_ADDRESS=%s\nSTATUS=%s\n\n" %(mac, host, status)
-        f = open("/home/bouable/esigetel/web/raspberry/raspberry/info.txt",'w')
+        f = open(nmap_info_file,'w')
         now = datetime.now()
         h = "DERNIER_NMAP=%s\n" %str(now)
         f.write(h)
-        f = open("/home/bouable/esigetel/web/raspberry/raspberry/info.txt",'a')
+        f = open(nmap_info_file,'a')
         f.write(data)
         f.close()
         time.sleep(15)

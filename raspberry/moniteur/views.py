@@ -20,7 +20,9 @@ from moniteur.models import *
 import nmap
 import subprocess
 
-#subprocess.check_call(["python","/home/bouable/esigetel/web/raspberry/raspberry/dmon.py"])
+import os
+
+#subprocess.check_call(["python","/home/bouable/esigetel/web/raspberry/raspberry/dmon.py","&"])
 
 class LocalisationView(ListView):
     model = Capteur 
@@ -109,7 +111,9 @@ class CarteDetailView(DetailView):
         carte.status = "down"  #Initialize status and ip to down and None
         carte.ip = None
         try:
-            openedFile = open("/home/bouable/esigetel/web/raspberry/raspberry/info.txt")
+            cur =  os.getcwd()
+            nmap_info_file = cur+"/raspberry/info.txt"
+            openedFile = open(nmap_info_file)
         
             mac = None
             for line in openedFile:
@@ -121,10 +125,12 @@ class CarteDetailView(DetailView):
                     status = line.split('=')[1].rstrip()
                 if 'DERNIER_NMAP=' in line:
                     last_nmap = line.split('=')[1].rstrip()
-    
- 	        if mac == carte.mac:
-	            carte.ip = ip 
-		    carte.status = status
+                
+                if str(mac).lower().replace(" ","") == str(carte.mac).lower().replace(" ",""):
+                    carte.ip = ip 
+                    carte.status = status
+                else:
+                    print "no"
         except:
             last_nmap = "No network" 
         
@@ -134,7 +140,7 @@ class CarteDetailView(DetailView):
         for capteur in capteurs:
             capteur.mesures = mesures.filter(capteur=capteur)
             capteur.last_mesure = capteur.mesures.last()
-            print capteur.nom_capteur, capteur.last_mesure
+        
 
         context['capteurs'] = capteurs 
         context['last_nmap'] = last_nmap
