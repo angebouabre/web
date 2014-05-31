@@ -108,10 +108,11 @@ class CarteDetailView(DetailView):
         carte = self.kwargs['slug']
         carte = Carte.objects.get(nom_carte=carte)
         #self.object = self.get_object() 
-        nom_carte = self.request.POST.get('nom_carte')
-        type_carte = self.request.POST.get('type_carte')
-        carte.type_carte = type_carte
-        carte.nom_carte = nom_carte
+        carte.nom_carte = self.request.POST.get('nom_carte')
+        carte.type_carte = self.request.POST.get('type_carte')
+        carte.mac = self.request.POST.get('mac')
+        carte.memoire_disque = self.request.POST.get('memoire_disque')
+        carte.is_activated = self.request.POST.get('is_activated', False)
         carte.save() 
  
         return HttpResponseRedirect("/mesure/carte/%s" %carte.nom_carte)             
