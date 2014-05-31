@@ -16,6 +16,9 @@ from moniteur.models import *
 #from django.db.models import Count
 #from datetime import date, timedelta
 
+from django.http import HttpResponseForbidden, HttpResponseRedirect
+from django.core.urlresolvers import reverse
+
 
 import nmap
 import subprocess
@@ -104,14 +107,14 @@ class CarteDetailView(DetailView):
     def post(self, request, *args, **kwargs):
         carte = self.kwargs['slug']
         carte = Carte.objects.get(nom_carte=carte)
-       
+        #self.object = self.get_object() 
         nom_carte = self.request.POST.get('nom_carte')
         type_carte = self.request.POST.get('type_carte')
         carte.type_carte = type_carte
         carte.nom_carte = nom_carte
         carte.save() 
-              
-        return super(CarteDetailView, self).get(request, *args, **kwargs)   
+ 
+        return HttpResponseRedirect("/mesure/carte/%s" %carte.nom_carte)             
  
     def get_context_data(self, **kwargs):
         context = super(CarteDetailView, self).get_context_data(**kwargs)
