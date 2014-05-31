@@ -102,9 +102,14 @@ class CarteDetailView(DetailView):
     template_name = 'carte-detail.html'
 
     def post(self, request, *args, **kwargs):
-        
-        a = self.request.POST.get('test', False)
-        print a
+        carte = self.kwargs['slug']
+        carte = Carte.objects.get(nom_carte=carte)
+       
+        nom_carte = self.request.POST.get('nom_carte')
+        type_carte = self.request.POST.get('type_carte')
+        carte.type_carte = type_carte
+        carte.nom_carte = nom_carte
+        carte.save() 
               
         return super(CarteDetailView, self).get(request, *args, **kwargs)   
  
