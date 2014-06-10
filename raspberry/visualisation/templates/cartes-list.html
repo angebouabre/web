@@ -10,33 +10,30 @@
 
 {% block content %}
 <link href='http://fonts.googleapis.com/css?family=Special+Elite|Bitter' rel='stylesheet' type='text/css'>
-<div class="row" style="background-color:grey; border:solid 2px; border-color:black;">
-  <div class="col-md-10 col-md-offset-1" style="margin-top:1%; margin-bottom:1%;">
-    <div class="row "style="background-color:white; border:solid 2px; border-color:black; margin-left:0px;">
-          {% for carte in cartes %}
-	      <div class="col-md-3" style="border:solid 1px; border-color:black; color:black;">
-		  <div class="row ">
-		      <div class="col-md-12">
-			     <p>Nom carte: {{carte.nom_carte}}</p>
-		      </div>
-		      <div class="col-md-12">
-			     <p>Type: {{carte.type_carte}}</p>
-		      </div>
-		      <div class="col-md-12">
-			     <p>Etat: {{carte.is_activated|display_state}}</p>
-		      </div>
-		      <div class="col-md-12">
-			     <p>Etat: {{carte.mac}}</p>
-		      </div>
-		      <div class="col-md-12">
-			     <p>Etat: {{carte.memoire_disque}}</p>
-		      </div>
-		  </div>
-	      </div>
-          {% endfor %}
-    </div>
-  </div>
-</div>
+<div class="row-fluid">
+    <div class="container-fluid">
+      <div class="col-md-9 col-md-offset-3">
+        <div class="panel panel-primary mouseentrepot"><!-- panel primary -->
+            <div class="panel-heading"><center>Liste des cartes</center></div>
+               <div class="panel-body ">
+                <div class="col-md-12">
+                   {% for carte in hosts %}
+                    <div class="col-md-3">
+                        <div class="row">
+                          <div class="panel panel-primary mouseentrepot col-md-11 col-md-offset-1">
+                              <div class="panel-heading"><center>{{carte}}</center></div>
+                              <div class="panel-body ">
+                                  <div class="col-md-12">
+                                    <a id="" class="" href="/mesure/carte/{{carte.nom_carte}}/"><img src="/static/img/raspberry-pi.jpg"/></a>
+                                  </div>
+                              </div>				  
+                          </div>
+                                    
+                        </div>
+                    </div>
+                   {% endfor %}
+		</div>
+	</div>
 {% endblock %}
 
 {% block footer %}

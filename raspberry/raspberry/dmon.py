@@ -33,7 +33,7 @@ def check_service():
                     mac = "%s:%s:%s:%s:%s:%s" %(mac1, mac2, mac3, mac4, mac5, mac6)
                 else:
                     mac = None
-                data = data + "MAC_ADDRESS=%s\nIP_ADDRESS=%s\nSTATUS=%s\n\n" %(mac, host, status)
+                data = data + "HOSTNAME=%s\nMAC_ADDRESS=%s\nIP_ADDRESS=%s\nSTATUS=%s\n\n" %(hostname, mac, host, status)
         f = open(nmap_info_file,'w')
         now = datetime.now()
         h = "DERNIER_NMAP=%s\n" %str(now)

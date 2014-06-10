@@ -86,6 +86,10 @@ class CapteurDetailView(DetailView):
        
 
 
+
+
+
+
 class CarteListView(ListView):
     model = Carte
     context_object_name = 'cartes'
@@ -94,8 +98,25 @@ class CarteListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(CarteListView, self).get_context_data(**kwargs)
 
-
+        cartes_list = []
+ 
+        try:
+            cur =  os.getcwd()
+            nmap_info_file = cur+"/raspberry/info.txt"
+            openedFile = open(nmap_info_file)
+        
+            mac = None
+            for line in openedFile:
+                if 'MAC_ADDRESS=' in line:
+                    mac = line.split('=')[1].rstrip()
+                if 'HOSTNAME=' in line:
+                    host= line.split('=')[1].rstrip()
+                    cartes_list.append(host)
+        except:
+            pass
+        context['hosts'] = cartes_list
         return context
+
 
 
 
