@@ -21,7 +21,7 @@ def display_state(state):
     elif state == False:
         state = "Désactivé"
     elif state == "up":
-        state = "Connecté"
+        state = "Connecté au Réseau"
     elif state == "down":
-        state = "Déconnecté"
+        state = "Déconnecté du Réseau"
     return state 

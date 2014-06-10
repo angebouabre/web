@@ -158,6 +158,11 @@ class CarteDetailView(DetailView):
             capteur.last_mesure = capteur.mesures.last()
         
 
+        if carte.is_activated == True:
+            carte.checked = "checked"
+        else:
+            carte.checked = " "
+
         context['capteurs'] = capteurs 
         context['last_nmap'] = last_nmap
         context['carte'] = carte

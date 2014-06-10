@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 CUR_DIR = os.path.dirname(__file__)
 MONITEUR_TEMPLATE = os.path.join(CUR_DIR, os.pardir, 'visualisation/templates/')
-STATIC_DIR = os.path.join(CUR_DIR, os.pardir, '/visualisation/static')
+STATIC_DIR = os.path.join(CUR_DIR, os.pardir, 'visualisation/static')
 
 
 # Quick-start development settings - unsuitable for production
@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'bootstrap_toolkit',
     'widget_tweaks',
     'bootstrap3',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
