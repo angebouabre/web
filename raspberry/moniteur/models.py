@@ -34,6 +34,7 @@ class Carte(models.Model):
     mac = models.CharField(max_length=30, blank=True, null=True)
     memoire_disque = models.CharField(max_length=30, blank=True, null=True)
     is_activated = models.BooleanField()
+    status = models.CharField(max_length=6)
     
     def __unicode__(self):
         return u"%s" % self.nom_carte

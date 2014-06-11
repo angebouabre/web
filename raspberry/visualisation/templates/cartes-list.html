@@ -17,14 +17,26 @@
             <div class="panel-heading"><center>Liste des cartes</center></div>
                <div class="panel-body ">
                 <div class="col-md-12">
-                   {% for carte in hosts %}
+                   {% for carte in cartes %}
                     <div class="col-md-3">
                         <div class="row">
                           <div class="panel panel-primary mouseentrepot col-md-11 col-md-offset-1">
-                              <div class="panel-heading"><center>{{carte}}</center></div>
-                              <div class="panel-body ">
+                              <div class="panel-heading"><center>{{carte.nom_carte}} | {{carte.status}}</center></div>
+                              <div class="panel-body">
                                   <div class="col-md-12">
-                                    <a id="" class="" href="/mesure/carte/{{carte.nom_carte}}/"><img src="/static/img/raspberry-pi.jpg"/></a>
+                                    {% if carte.type_carte == "Raspberry"%}
+                                        {% if carte.is_activated == True%}
+                                           <a id="" class="" href="/mesure/carte/{{carte.nom_carte}}/"><img src="/static/img/raspberry-pi.jpg"/></a>
+                                        {% else %}
+                                           <a id="" class="" href="/mesure/carte/{{carte.nom_carte}}/"><img src="/static/img/raspberry-pi-desaturate.jpg"/></a>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if carte.is_activated == True%}
+                                           <a id="" class="" href="/mesure/carte/{{carte.nom_carte}}/"><img src="/static/img/arduino2.png" /></a>
+                                        {% else %}
+                                           <a id="" class="" href="/mesure/carte/{{carte.nom_carte}}/"><img src="/static/img/arduino2-desaturate.png"/></a>
+                                        {% endif %}
+                                    {% endif %}
                                   </div>
                               </div>				  
                           </div>

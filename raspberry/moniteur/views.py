@@ -24,6 +24,7 @@ import nmap
 import subprocess
 
 import os
+import sys 
 
 #subprocess.check_call(["python","/home/bouable/esigetel/web/raspberry/raspberry/dmon.py","&"])
 
@@ -98,23 +99,28 @@ class CarteListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(CarteListView, self).get_context_data(**kwargs)
 
-        cartes_list = []
  
         try:
             cur =  os.getcwd()
-            nmap_info_file = cur+"/raspberry/info.txt"
+            nmap_info_file = cur+"/moniteur/info.txt"
             openedFile = open(nmap_info_file)
         
             mac = None
             for line in openedFile:
                 if 'MAC_ADDRESS=' in line:
+                    carte = Carte()
                     mac = line.split('=')[1].rstrip()
-                if 'HOSTNAME=' in line:
-                    host= line.split('=')[1].rstrip()
-                    cartes_list.append(host)
+                    carte.nom_carte = "Rename_"+mac.replace(":","_")
+                    carte.mac = mac
+                    carte.is_activated = False
+                    if carte.nom_carte != "Rename_None":
+                        carte.save()
         except:
+            print "Unexpected error:", sys.exc_info()[0]
             pass
-        context['hosts'] = cartes_list
+        
+
+        context['hosts'] = "" 
         return context
 
 
@@ -149,10 +155,13 @@ class CarteDetailView(DetailView):
         carte.ip = None
         try:
             cur =  os.getcwd()
-            nmap_info_file = cur+"/raspberry/info.txt"
+            nmap_info_file = cur+"/moniteur/info.txt"
             openedFile = open(nmap_info_file)
         
             mac = None
+            ip = " "
+            status = " "
+            last_nmap = " "
             for line in openedFile:
                 if 'MAC_ADDRESS=' in line:
                     mac = line.split('=')[1].rstrip()
@@ -167,10 +176,11 @@ class CarteDetailView(DetailView):
                     carte.ip = ip 
                     carte.status = status
                 else:
-                   pass 
+                    pass 
         except:
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
             last_nmap = "No network" 
-        
 
         mesures = Mesure.objects.filter(capteur__in=capteurs)
         
@@ -183,6 +193,14 @@ class CarteDetailView(DetailView):
             carte.checked = "checked"
         else:
             carte.checked = " "
+
+        if carte.type_carte == "Raspberry":
+            carte.raspberry = "selected"
+        elif carte.type_carte == "Arduino":
+            carte.arduino = "selected"
+        else:
+            carte.dallas = "selected"
+
 
         context['capteurs'] = capteurs 
         context['last_nmap'] = last_nmap

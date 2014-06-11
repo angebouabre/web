@@ -19,9 +19,9 @@
 	       <div class="form-group">
 	          <label for="text2">Type Carte</label>
                   <select name="type_carte" class="form-control" value="{{carte.type_carte}}">
-		    <option>Raspberry</option>
-		    <option>Arduino</option>
-		    <option>Dallas</option>
+            <option {{carte.raspberry}}>Raspberry</option>
+		    <option {{carte.arduino}}>Arduino</option>
+		    <option {{carte.dallas}}>Dallas</option>
 		  </select>
 	       </div>
 	       <div class="form-group">

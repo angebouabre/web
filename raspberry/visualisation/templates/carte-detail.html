@@ -48,7 +48,11 @@
 	      </div>
 	  </div> 
        </div> 
-       <img src="/static/img/{{carte.type_carte|lower}}.png" style="width:400px; height:300px;"/>
+       {% if carte.is_activated == True%}
+           <img src="/static/img/{{carte.type_carte|lower}}.png" style="width:400px; height:300px;"/>
+       {% else %}
+           <img src="/static/img/{{carte.type_carte|lower}}-desaturate.png" style="width:400px; height:300px;"/>
+       {% endif %}
     </div>
 </div>
 {% endblock %}
