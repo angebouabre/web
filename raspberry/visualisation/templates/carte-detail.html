@@ -40,13 +40,23 @@
        <div class="col-md-6">
           <div class="panel panel-primary mouseentrepot">
               <div class="panel-body ">
-		<div class="row-fluid col-md-12">
-		    {% for capteur in capteurs %}  
-			 <a id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{% include "blocks/hygrometrie.html" %}</a>
+                <div class="row-fluid col-md-12">
+                    {% for capteur in capteurs %}  
+                        {% ifequal capteur.type_mesure 'Hygrometrie' %}
+                          <a id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{% include "blocks/hygrometrie.html" %}</a>
+                        {% endifequal %}
                     {% endfor %}
-		 </div>
-	      </div>
-	  </div> 
+                    {% for capteur in capteurs %}  
+                        {% ifequal capteur.type_mesure 'Temperature' %}
+                          <a style="width:250px" id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{% include "blocks/thermometer.html" %}</a>
+                        {% endifequal %}
+                    {% endfor %}
+                    <div style="background-color:black; width:180px; height:180px;">
+                        <a style="color:white" href="#">Ajouter un nouveau capteur...</a> 
+                    </div>
+                </div>
+	          </div>
+	      </div> 
        </div> 
        {% if carte.is_activated == True%}
            <img src="/static/img/{{carte.type_carte|lower}}.png" style="width:400px; height:300px;"/>

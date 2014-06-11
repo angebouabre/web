@@ -20,8 +20,13 @@
                    {% for carte in cartes %}
                     <div class="col-md-3">
                         <div class="row">
-                          <div class="panel panel-primary mouseentrepot col-md-11 col-md-offset-1">
-                              <div class="panel-heading"><center>{{carte.nom_carte}} | {{carte.status}}</center></div>
+                        {% if carte.status == "up" %}
+                          <div class="panel panel-primary col-md-11 col-md-offset-1 panel-up">
+                              <div class="panel-heading carte-up"><center>{{carte.nom_carte}}</center></div>
+                        {% else %}
+                          <div class="panel panel-primary col-md-11 col-md-offset-1 panel-down">
+                              <div class="panel-heading carte-down"><center>{{carte.nom_carte}}</center></div>
+                        {% endif %}
                               <div class="panel-body">
                                   <div class="col-md-12">
                                     {% if carte.type_carte == "Raspberry"%}

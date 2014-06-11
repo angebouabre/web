@@ -12,3 +12,35 @@ body , .mouseentrepot{
 h1{
 	font-family: 'Oswald', sans-serif;
 }
+
+.carte_down{
+    color: rgba(255,255,255, 1);
+    background-color: rgba(226,0,26, 1);
+    border-color: rgba(226,0,26, 1);
+}
+
+.panel-primary > .carte-up {
+    font-family:'Ubuntu';
+    font-weight: bold;
+    font-size: 17px;
+    color: rgba(26,23,27, 1);
+    background-color: rgba(87,171,39, 1);
+    border-color: rgba(87,171,39, 1);
+}
+
+.panel-up{
+    border-color: rgba(87,171,39, 1);
+}
+
+.panel-primary > .carte-down {
+    font-family:'Ubuntu';
+    font-weight: bold;
+    font-size: 17px;
+    color: rgba(26,23,27, 1);
+    background-color: rgba(226,0,26, 1);
+    border-color: rgba(226,0,26, 1);
+}
+
+.panel-down{
+    border-color: rgba(226,0,26, 1);
+}
