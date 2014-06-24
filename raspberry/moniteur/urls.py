@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = patterns('',
     # Examples:
-   url(r'^localisation/$', LocalisationView.as_view(), name='localisation'), 
+   #url(r'^localisation/$', LocalisationView.as_view(), name='localisation'), 
    url(r'^localisation/(?P<localisation>[-_.\w]+)/$', EntrepotDetailView.as_view(), name='entrepot-detail'), 
    url(r'^capteur/(?P<slug>[-_.\w]+)/$', CapteurDetailView.as_view(), name='capteur-detail'), 
    url(r'^configuration/cartes/$', CarteListView.as_view(), name='cartes-list'), 

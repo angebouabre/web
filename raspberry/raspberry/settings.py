@@ -14,7 +14,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 CUR_DIR = os.path.dirname(__file__)
 MONITEUR_TEMPLATE = os.path.join(CUR_DIR, os.pardir, 'visualisation/templates/')
+REGISTRATION_TEMPLATE = os.path.join(CUR_DIR, os.pardir, 'visualisation/registration/templates')
+
 STATIC_DIR = os.path.join(CUR_DIR, os.pardir, 'visualisation/static')
+
+LOGIN_REDIRECT_URL = 'localisation' 
 
 
 # Quick-start development settings - unsuitable for production
@@ -46,6 +50,8 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'bootstrap3',
     'debug_toolbar',
+    'registration',
+#    'registration_defaults',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,6 +99,6 @@ STATICFILES_DIRS = (
         STATIC_DIR,
 )
 
-TEMPLATE_DIRS = (MONITEUR_TEMPLATE,)
+TEMPLATE_DIRS = (MONITEUR_TEMPLATE, REGISTRATION_TEMPLATE)
 
 STATIC_URL = '/static/'
