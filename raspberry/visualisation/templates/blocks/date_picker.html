@@ -1,0 +1,109 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+    function verifierRadio(form) {
+        var coche=false;
+        for (var i=0; i<form.type.length ; i++){
+            if (form.type[i].checked) {
+                coche=true;
+            }
+        }
+        if (coche) {
+            form.submit();
+        } else {
+          alert("Vous devez choisir un type");
+          return false;
+        }
+    }
+
+    function selectStartDate(form){
+        if (form.start_date.value){
+            val = form.start_date.value;
+            form.end_date.value = val;
+        }
+    }
+</script>
+
+<form class="form-horizontal visible-lg" role="form" method="get" action="." style="">
+    <div class="text-center form-group">
+        <div class="form-group input-daterange" id="datepicker" style="margin-right:2px;"> 
+                <div class="col-lg-6">
+                    <div class="input-group has-success has-feedback">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Debut</button>
+                      </span>
+                      <input type="text" class="form-control datepicker"  onChange="selectStartDate(this.form);" name="start_date" style="text-align:center" required>
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                  <div class="col-lg-6">
+                    <div class="input-group has-success has-feedback">
+                      <input type="text" class="form-control datepicker" name="end_date" style="text-align:center" required>
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit" onClick=" return verifierRadio(this.form);">Fin</button>
+                      </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+        </div> <!----End input search---->
+    </div>
+</form> 
+
+<script>
+
+$(function(){
+    var activated_dates = ['2014-05-23', '2014-06-05'];
+
+    $('.input-daterange').datepicker({
+    format: "dd-mm-yyyy",
+    //startDate: "-50d",
+    endDate: "-{{diff}}",
+    language: "fr",
+    autoclose: true,
+    //todayBtn: "linked",
+    //todayHighlight: true,
+       
+    beforeShowDay: function(date){
+            if (date.getMonth() == (new Date()).getMonth())
+                switch (date.getDate()){
+                    //case 15: //To use with javascript to mark the selected start_date in the input end_date
+                        //return { classes: 'active'};
+                    // case 12:
+                        // return "green";
+            }
+           var formattedDate = $.fn.datepicker.DPGlobal.formatDate(date, 'yyyy-mm-dd', 'fr');
+           if ($.inArray(formattedDate.toString(), activated_dates) != -1){
+               return {
+                  //enabled : true, 
+                  classes : 'Highlighted',
+                  tooltip: "Période d'exécution des tests",
+               };
+           }
+          return;
+      }
+
+    });
+
+});
+
+</script>
+<script>
+/// Validation Formulaire
+$(function () {
+    var intputElements = document.getElementsByTagName("input");
+    for (var i = 0; i < intputElements.length; i++) {
+        intputElements[i].oninvalid = function (e) {
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) {
+                if (e.target.name == "start_date") {
+                    e.target.setCustomValidity("Vous devez selectionner une date de début");
+                }
+                else if (e.target.name == "end_date"){
+                    e.target.setCustomValidity("Vous devez selectionner une date de fin");
+                }
+            }
+        };
+    }
+})
+</script>
+
