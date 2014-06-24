@@ -3,11 +3,25 @@
 {% block title %}{% trans "Logged out" %}{% endblock %}
 {% block content %}
 
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-       <div class="alert alert-success">Vous êtes bien déconnecté! <a href="/accounts/login">Se connecter</a></div>
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true"> 
+<div class="modal-dialog" style="margin:15% 35% 0 -18%; width:600px;">
+    <div class="modal-content">
+       <div class="modal-header">
+       </div>
+       <div class="modal-body">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+               <div class="alert alert-success">Vous êtes bien déconnecté! <a href="/accounts/login">Se connecter</a></div>
+            </div>
+        </div>
+       </div>
+       <div class="modal-footer">
+       </div>
     </div>
 </div>
+</div>
+
+
 
 
 {% endblock %}
