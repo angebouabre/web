@@ -21,9 +21,12 @@
     <!--a href="" class="list-group-item">Marque: {{capteur.marque}}</a-->
     <a href="" class="list-group-item">Dernière mesure: {{ capteur.last_mesure.date_mesure }}</a>
     <a href="" class="list-group-item">Type Mesure: {{capteur.type_mesure}}</a>
-    <!-- If user is gestionnaire -->   
-    <a href="" class="list-group-item">*Date Achat: {{capteur.date_achat}}</a>
-    <a href="" class="list-group-item">*Date Activation: {{capteur.date_activation}}</a>
-    <a href="/mesure/carte/{{capteur.carte.slug}}" class="list-group-item">*Carte: {{capteur.carte}}</a>
-    <!-- Endif -->
+    <!-- If user is gestionnaire -->
+    {% for group in user.groups.all %}
+        {% if group.name == 'Gestionnaire' %}
+            <a href="" class="list-group-item">Date Achat: {{capteur.date_achat}}</a>
+            <a href="" class="list-group-item">Date Activation: {{capteur.date_activation}}</a>
+            <a href="/mesure/carte/{{capteur.carte.slug}}" class="list-group-item">Carte: {{capteur.carte}}</a>
+        {% endif %}
+    {% endfor %}
 </div>

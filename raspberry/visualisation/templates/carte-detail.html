@@ -24,9 +24,13 @@
                     Info Carte
                  </div>
                  <div class="col-md-6">
-		    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-			Editer
-		    </button>
+            {% for group in user.groups.all %}
+                {% if group.name == 'Gestionnaire' %}
+                    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                    Editer
+                    </button>
+                {% endif %}
+            {% endfor %}
                  </div>
                </div>
              </div>
@@ -51,9 +55,13 @@
                           <a style="width:250px" id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{% include "blocks/thermometer.html" %}</a>
                         {% endifequal %}
                     {% endfor %}
-                    <div style="background-color:black; width:180px; height:180px;">
-                        <a style="color:white" href="#">Ajouter un nouveau capteur...</a> 
-                    </div>
+                    {% for group in user.groups.all %}
+                        {% if group.name == 'Gestionnaire' %}
+                            <div style="background-color:black; width:180px; height:180px;">
+                                <a style="color:white" href="/admin/moniteur/capteur/add/">Ajouter un nouveau capteur...</a> 
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
 	          </div>
 	      </div> 

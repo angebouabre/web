@@ -15,6 +15,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 CUR_DIR = os.path.dirname(__file__)
 MONITEUR_TEMPLATE = os.path.join(CUR_DIR, os.pardir, 'visualisation/templates/')
 REGISTRATION_TEMPLATE = os.path.join(CUR_DIR, os.pardir, 'visualisation/registration/templates')
+ADMIN_TEMPLATE = os.path.join(CUR_DIR, os.pardir, 'visualisation/grappelli/templates/')
+
 
 STATIC_DIR = os.path.join(CUR_DIR, os.pardir, 'visualisation/static')
 
@@ -38,7 +40,6 @@ ALLOWED_HOSTS = ['192.168.1.19', 'ademovic.isa-geek.com']
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -51,6 +52,8 @@ INSTALLED_APPS = (
     'bootstrap3',
     'debug_toolbar',
     'registration',
+    'grappelli',
+    'django.contrib.admin',
 #    'registration_defaults',
 )
 
@@ -99,6 +102,6 @@ STATICFILES_DIRS = (
         STATIC_DIR,
 )
 
-TEMPLATE_DIRS = (MONITEUR_TEMPLATE, REGISTRATION_TEMPLATE)
+TEMPLATE_DIRS = (MONITEUR_TEMPLATE, REGISTRATION_TEMPLATE, ADMIN_TEMPLATE)
 
 STATIC_URL = '/static/'

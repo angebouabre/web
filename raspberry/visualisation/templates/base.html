@@ -41,7 +41,16 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user}}<i> {{user.groups.all|first}}</i><b class="caret"></b></a>
                   <ul class="dropdown-menu">
+                    {% for group in user.groups.all %}
+                        {% if group.name == 'Gestionnaire' %}
+                            <li><a href="/admin/auth/user/add/">Ajouter Utilisateur</a></li>
+                            <li><a href="/admin/auth/group/add/">Ajouter Groupe</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+
                     <li><a href="/accounts/logout/">Se Déconnecter</a></li>
+                    <li><a href="/admin/password_change/">Changer Mot de passe</a></li>
                   </ul>
                 </li>
               </ul>
