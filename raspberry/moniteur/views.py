@@ -51,7 +51,8 @@ class EntrepotDetailView(ListView):
         en = end_date
 
 
-        print start_date, end_date
+        st1 = start_date
+        st2 = end_date
         
         if start_date and end_date:
             st_date = start_date.split(' ')[0]
@@ -63,20 +64,52 @@ class EntrepotDetailView(ListView):
             end_date = str(en_date.split('/')[2]+'-'+en_date.split('/')[1]+'-'+en_date.split('/')[0]+' '+en_time)
             mesures = Mesure.objects.filter(capteur__in=capteurs, date_mesure__range=(start_date,end_date))
         else:
-            mesures = Mesure.objects.filter(capteur__in=capteurs)
+            hour = (datetime.now() - timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
+            now = datetime.now().strftime("%d/%m/%Y %H:%M") 
+            
+            mesures = Mesure.objects.filter(capteur__in=capteurs) #TODO filter mesures in range from hour to now
 
 
 
         for capteur in capteurs:
             capteur.mesures = mesures.filter(capteur=capteur)
             capteur.last_mesure = capteur.mesures.last()
-            print capteur.nom_capteur, capteur.last_mesure
 
         #for mesure in mesures:
         #    print mesure.capteur, mesure.capteur.type_mesure, mesure.valeur
+       
+
+        hour = (datetime.now() - timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
+        twelve = (datetime.now() - timedelta(hours=12)).strftime("%d/%m/%Y %H:%M")
+        twenty_four = (datetime.now() - timedelta(hours=24)).strftime("%d/%m/%Y %H:%M")
+        week = (datetime.now() - timedelta(days=7)).strftime("%d/%m/%Y %H:%M")
+        month = (datetime.now() - timedelta(days=30)).strftime("%d/%m/%Y %H:%M")
+        year = (datetime.now() - timedelta(days=365)).strftime("%d/%m/%Y %H:%M")
+       
+
+        context['hour'] = hour 
+        context['twelve'] = twelve
+        context['twenty_four'] = twenty_four
+        context['week'] = week
+        context['month'] = month
+        context['year'] = year
         
+
+        if st1 == twelve:
+            context['start_date'] = twelve 
+        elif st1 == twenty_four: 
+            context['start_date'] = twenty_four
+        elif st1 == week: 
+            context['start_date'] = week
+        elif st1 == month: 
+            context['start_date'] = month
+        elif st1 == year: 
+            context['start_date'] = year
+        else:
+            context['start_date'] = hour 
+
         context['end_date'] = datetime.now().strftime("%d/%m/%Y %H:%M") 
-        context['start_date'] = (datetime.now() - timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
+        
         context['mesures'] = mesures
         context['capteurs'] = capteurs 
         context['localisation'] = localisation 

@@ -16,13 +16,13 @@
                  <div class="btn-group">
                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Période de visualisation <span class="caret"></span></a>
                    <ul class="dropdown-menu">
-                     <li><a href="#">1 Heure (Par Défaut)</a></li>
-                     <li><a href="#">12 Heures</a></li>
-                     <li><a href="#">24 Heures</a></li>
-                     <li><a href="#">Une Semaine</a></li>
-                     <li><a href="#">Un mois</a></li>
+                     <li><a href="/mesure/localisation/{{localisation}}/?start_date={{hour}}&end_date={{end_date}}">1 Heure (Par Défaut)</a></li>
+                     <li><a href="/mesure/localisation/{{localisation}}/?start_date={{twelve}}&end_date={{end_date}}">12 Heures</a></li>
+                     <li><a href="/mesure/localisation/{{localisation}}/?start_date={{twenty_four}}&end_date={{end_date}}">24 Heures</a></li>
+                     <li><a href="/mesure/localisation/{{localisation}}/?start_date={{week}}&end_date={{end_date}}">Une Semaine</a></li>
+                     <li><a href="/mesure/localisation/{{localisation}}/?start_date={{month}}&end_date={{end_date}}">Un mois</a></li>
                      <li class="divider"></li>
-                     <li><a href="#">Un an</a></li>
+                     <li><a href="/mesure/localisation/{{localisation}}/?start_date={{year}}&end_date={{end_date}}">Un an</a></li>
                    </ul>
                  </div>
            </div>
