@@ -43,4 +43,34 @@ h1{
 
 .panel-down{
     border-color: rgba(226,0,26, 1);
+    font-weight: bold;
+    color: white;
 }
+
+.navbar-inverse 
+.navbar-brand {
+    color:white;
+    font-size: 32px;
+}
+
+#home{
+   font-family:'Righteous';
+}
+
+.navbar-inverse .navbar-nav > li > a {
+   font-family:'Lobster Two';
+   font-weight: bold;
+   font-size: 30px;
+   color: white;
+
+}
+
+
+.panel-primary > .panel-heading {
+    font-family:'Sanchez';
+   font-size: 24px;
+    color: black;
+    background-color: #428BCA;
+    border-color: #428BCA;
+}
+

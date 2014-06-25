@@ -22,10 +22,10 @@
                         <div class="row">
                         {% if carte.status == "up" %}
                           <div class="panel panel-primary col-md-11 col-md-offset-1 panel-up">
-                              <div class="panel-heading carte-up"><center>{{carte.nom_carte}}</center></div>
+                              <div class="panel-heading carte-up"><center>{{carte.nom_carte|truncatechars:12}}</center></div>
                         {% else %}
                           <div class="panel panel-primary col-md-11 col-md-offset-1 panel-down">
-                              <div class="panel-heading carte-down"><center>{{carte.nom_carte}}</center></div>
+                              <div class="panel-heading carte-down"><center>{{carte.nom_carte|truncatechars:12}}</center></div>
                         {% endif %}
                               <div class="panel-body">
                                   <div class="col-md-12">
