@@ -1,0 +1,51 @@
+<link rel="stylesheet" type="text/css" href="/static/js/jquery.datetimepicker.css"/ >
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery.datetimepicker.js"></script>
+
+
+
+<form class="form-horizontal visible-lg" role="form" method="get" action="." style="">
+    <div class="text-center form-group">
+        <div class="form-group input-daterange" id="datepicker" style="margin-right:2px;"> 
+                <div class="col-lg-6">
+                    <div class="input-group has-success has-feedback">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Debut</button>
+                      </span>
+                      <input type="text" class="form-control datepicker" value="{{start_date}}" id="start_date"  name="start_date" style="text-align:center" required>
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                  <div class="col-lg-6">
+                    <div class="input-group has-success has-feedback">
+                        <input type="text" class="form-control datepicker" value="{{end_date}}" id="end_date"  name="end_date" style="text-align:center" required>
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit" onClick=" return verifierRadio(this.form);">Fin</button>
+                      </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+        </div> <!----End input search---->
+    </div>
+</form> 
+
+<script>
+
+jQuery('#start_date').datetimepicker({
+ lang:'fr',
+ format:'d/m/Y H:i',
+ onShow:function( ct ){
+   this.setOptions({
+    maxDate:jQuery('#end_date').val()?jQuery('#end_date').val():false
+   })
+  },
+});
+jQuery('#end_date').datetimepicker({
+ lang:'fr',
+ format:'d/m/Y H:i',
+ onShow:function( ct ){
+   this.setOptions({
+    maxDate:jQuery('#start_date').val()?jQuery('#start_date').val():false
+   })
+  },
+});
+
+</script>

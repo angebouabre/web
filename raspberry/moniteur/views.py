@@ -41,12 +41,32 @@ class EntrepotDetailView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(EntrepotDetailView, self).get_context_data(**kwargs)
-       
+         
         localisation = self.kwargs['localisation']
         capteurs = Capteur.objects.filter(localisation=localisation)
+         
+        start_date = self.request.GET.get('start_date')
+        end_date = self.request.GET.get('end_date')
+        st = start_date
+        en = end_date
+
+
+        print start_date, end_date
         
-        mesures = Mesure.objects.filter(capteur__in=capteurs)
-        
+        if start_date and end_date:
+            st_date = start_date.split(' ')[0]
+            st_time = start_date.split(' ')[1]
+            start_date = str(st_date.split('/')[2]+'-'+st_date.split('/')[1]+'-'+st_date.split('/')[0]+' '+st_time)
+
+            en_date = end_date.split(' ')[0]
+            en_time = end_date.split(' ')[1]
+            end_date = str(en_date.split('/')[2]+'-'+en_date.split('/')[1]+'-'+en_date.split('/')[0]+' '+en_time)
+            mesures = Mesure.objects.filter(capteur__in=capteurs, date_mesure__range=(start_date,end_date))
+        else:
+            mesures = Mesure.objects.filter(capteur__in=capteurs)
+
+
+
         for capteur in capteurs:
             capteur.mesures = mesures.filter(capteur=capteur)
             capteur.last_mesure = capteur.mesures.last()
@@ -54,7 +74,9 @@ class EntrepotDetailView(ListView):
 
         #for mesure in mesures:
         #    print mesure.capteur, mesure.capteur.type_mesure, mesure.valeur
-
+        
+        context['start_date'] = "27/06/2014 15:00" 
+        context['end_date'] = "27/06/2014 17:30"
         context['mesures'] = mesures
         context['capteurs'] = capteurs 
         context['localisation'] = localisation 

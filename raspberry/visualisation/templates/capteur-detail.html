@@ -22,21 +22,21 @@
          <div class="panel panel-primary">
              <div class="panel-heading"><center>Mesure</center></div>
              <div class="panel-body ">
-                 <div class="col-md-9">
+                 <div class="col-md-8">
                      {% if capteur.type_mesure == 'Temperature' %}
                  	<a id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{% include "blocks/thermometer.html" %}</a>
                      {% else %}
                  	<a id="" class="" href="/mesure/capteur/{{capteur.nom_capteur}}">{% include "blocks/hygrometrie.html" %}</a>
                      {% endif %}
                  </div>
-                 <div class="col-md-3">
+                 <div class="col-md-4">
                      <div class="">
-                 	<p>{{ capteur.last_mesure.valeur }}%</p>
+                    <p>Dern.: {{ capteur.last_mesure.valeur }}%</p>
                      </div>
                      <div class="" style="margin-top:100%">
-                 	<p>{{ capteur.mes_min }}</p>
-                 	<p>{{ capteur.mes_moy | floatformat:2 }}</p>
-                 	<p>{{ capteur.mes_max }}</p>
+                 	<p>Min.: {{ capteur.mes_min }}</p>
+                 	<p>Moy.: {{ capteur.mes_moy | floatformat:2 }}</p>
+                 	<p>Max.: {{ capteur.mes_max }}</p>
                      </div>
                  </div>
              </div>
