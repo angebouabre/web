@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 
-
+from datetime import datetime, timedelta
 from django.shortcuts import render
 from django.db.models import Avg, Max, Min
 
@@ -75,8 +75,8 @@ class EntrepotDetailView(ListView):
         #for mesure in mesures:
         #    print mesure.capteur, mesure.capteur.type_mesure, mesure.valeur
         
-        context['start_date'] = "27/06/2014 15:00" 
-        context['end_date'] = "27/06/2014 17:30"
+        context['end_date'] = datetime.now().strftime("%d/%m/%Y %H:%M") 
+        context['start_date'] = (datetime.now() - timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
         context['mesures'] = mesures
         context['capteurs'] = capteurs 
         context['localisation'] = localisation 
