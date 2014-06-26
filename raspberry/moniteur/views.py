@@ -127,17 +127,79 @@ class CapteurDetailView(DetailView):
         
         capteur = self.kwargs['slug']
         capteur = Capteur.objects.get(slug=capteur)
-        
-        mesures = Mesure.objects.filter(capteur=capteur)
+       
+       
+        start_date = self.request.GET.get('start_date')
+        end_date = self.request.GET.get('end_date')
+        st = start_date
+        en = end_date
+
+ 
+        st1 = start_date
+        st2 = end_date
+
+        if start_date and end_date:
+            st_date = start_date.split(' ')[0]
+            st_time = start_date.split(' ')[1]
+            start_date = str(st_date.split('/')[2]+'-'+st_date.split('/')[1]+'-'+st_date.split('/')[0]+' '+st_time)
+
+            en_date = end_date.split(' ')[0]
+            en_time = end_date.split(' ')[1]
+            end_date = str(en_date.split('/')[2]+'-'+en_date.split('/')[1]+'-'+en_date.split('/')[0]+' '+en_time)
+            mesures = Mesure.objects.filter(capteur=capteur, date_mesure__range=(start_date,end_date))
+        else:
+            hour = (datetime.now() - timedelta(hours=1)).strftime("%Y-%m-%d %H:%M")
+            now = datetime.now().strftime("%Y-%m-%d %H:%M") 
+            
+            mesures = Mesure.objects.filter(capteur=capteur, date_mesure__range=(hour,now)) #TODO filter mesures in range from hour to now
+
+
         stats = mesures.aggregate(Avg('valeur'), Max('valeur'), Min('valeur'))
         
         capteur.mes_moy = stats['valeur__avg']
         capteur.mes_max = stats['valeur__max']
         capteur.mes_min = stats['valeur__min']
         capteur.last_mesure = mesures.last()
+      
+
+
+
+ 
+        hour = (datetime.now() - timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
+        twelve = (datetime.now() - timedelta(hours=12)).strftime("%d/%m/%Y %H:%M")
+        twenty_four = (datetime.now() - timedelta(hours=24)).strftime("%d/%m/%Y %H:%M")
+        week = (datetime.now() - timedelta(days=7)).strftime("%d/%m/%Y %H:%M")
+        month = (datetime.now() - timedelta(days=30)).strftime("%d/%m/%Y %H:%M")
+        year = (datetime.now() - timedelta(days=365)).strftime("%d/%m/%Y %H:%M")
        
+
+        context['hour'] = hour 
+        context['twelve'] = twelve
+        context['twenty_four'] = twenty_four
+        context['week'] = week
+        context['month'] = month
+        context['year'] = year
+        
+
+        if st1 == twelve:
+            context['start_date'] = twelve 
+        elif st1 == twenty_four: 
+            context['start_date'] = twenty_four
+        elif st1 == week: 
+            context['start_date'] = week
+        elif st1 == month: 
+            context['start_date'] = month
+        elif st1 == year: 
+            context['start_date'] = year
+        else:
+            context['start_date'] = hour 
+
+        context['end_date'] = datetime.now().strftime("%d/%m/%Y %H:%M") 
+        
+
+
         context['capteur'] = capteur 
-        context['mesures'] = mesures.order_by('-date_mesure')[:5]
+        context['mesures'] = mesures.order_by('-date_mesure') #[:5]
         return context
        
 

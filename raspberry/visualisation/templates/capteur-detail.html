@@ -11,6 +11,34 @@
 {% block content %}
 <link href='http://fonts.googleapis.com/css?family=Special+Elite|Bitter' rel='stylesheet' type='text/css'>
 <div class="row-fluid">
+	<link href='http://fonts.googleapis.com/css?family=Oswald|Black+Ops+One' rel='stylesheet' type='text/css'>
+    <div class="container-fluid">
+        <div class="col-md-2" style="padding: 20px 15px 0px 0px !important;">
+           <div class="container">
+                 <div class="btn-group">
+                   <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Période de visualisation <span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                     <li><a href="/mesure/capteur/{{capteur}}/?start_date={{hour}}&end_date={{end_date}}">0 Heure (Par Défaut)</a></li>
+                     <li><a href="/mesure/capteur/{{capteur}}/?start_date={{twelve}}&end_date={{end_date}}">12 Heures</a></li>
+                     <li><a href="/mesure/capteur/{{capteur}}/?start_date={{twenty_four}}&end_date={{end_date}}">24 Heures</a></li>
+                     <li><a href="/mesure/capteur/{{capteur}}/?start_date={{week}}&end_date={{end_date}}">Une Semaine</a></li>
+                     <li><a href="/mesure/capteur/{{capteur}}/?start_date={{month}}&end_date={{end_date}}">Un mois</a></li>
+                     <li class="divider"></li>
+                     <li><a href="/mesure/capteur/{{capteur}}/?start_date={{year}}&end_date={{end_date}}">Un an</a></li>
+                   </ul>
+                 </div>
+           </div>
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+       <h1 id="local" style="margin-left:26%">{{localisation | display_name}}</h1>
+        </div>
+        <div class="col-md-5" style="padding: 20px 15px 0px !important;">
+            {#% include "blocks/date_picker.html" %#}
+            {% include "blocks/datetime_picker.html" %}
+        </div>
+    </div>    
+</div>    
+<div class="row-fluid">
     <div class="col-md-3">
        <div class="col-md-12">
          <div class="panel panel-primary">
