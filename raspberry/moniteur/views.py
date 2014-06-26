@@ -64,10 +64,10 @@ class EntrepotDetailView(ListView):
             end_date = str(en_date.split('/')[2]+'-'+en_date.split('/')[1]+'-'+en_date.split('/')[0]+' '+en_time)
             mesures = Mesure.objects.filter(capteur__in=capteurs, date_mesure__range=(start_date,end_date))
         else:
-            hour = (datetime.now() - timedelta(hours=1)).strftime("%d/%m/%Y %H:%M")
-            now = datetime.now().strftime("%d/%m/%Y %H:%M") 
+            hour = (datetime.now() - timedelta(hours=1)).strftime("%Y-%m-%d %H:%M")
+            now = datetime.now().strftime("%Y-%m-%d %H:%M") 
             
-            mesures = Mesure.objects.filter(capteur__in=capteurs) #TODO filter mesures in range from hour to now
+            mesures = Mesure.objects.filter(capteur__in=capteurs, date_mesure__range=(hour,now)) #TODO filter mesures in range from hour to now
 
 
 
