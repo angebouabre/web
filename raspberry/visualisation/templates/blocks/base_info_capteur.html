@@ -17,9 +17,9 @@
              </ul>
           </a>
     </div-->
-    <a href="/mesure/localisation/{{capteur.localisation}}" class="list-group-item">Localisation: {{capteur.localisation | display_name}}</a>
+    <a href="/mesure/localisation/{{capteur.localisation}}" class="list-group-item">Localisation: <b>{{capteur.localisation | display_name}}</b></a>
     <!--a href="" class="list-group-item">Marque: {{capteur.marque}}</a-->
-    <a href="" class="list-group-item">Dernière mesure: {{ capteur.last_mesure.date_mesure }}</a>
+    <a href="" class="list-group-item">Dernière mesure:<br><b>{{ capteur.last_mesure.date_mesure }}</b></a>
     <a href="" class="list-group-item">Type Mesure: {{capteur.type_mesure}}</a>
     <!-- If user is gestionnaire -->
     {% for group in user.groups.all %}
