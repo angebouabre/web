@@ -72,49 +72,73 @@ pk += 1
 #On parcours les fichiers du dossier des données et on les parse
 doss = "/home/pi/data"
 for fic in os.listdir(doss):
-    opened = open(os.path.join(doss,fic))
-    for line in opened:
-        if "t=" in line:
-            line = line.split("=")
-            temperature = float(line[-1])/1000
-            date =  fic.split("_")[5] + "-" + fic.split("_")[4] + "-" + fic.split("_")[3] + " " + fic.split("_")[6] +\
-            ":" + fic.split("_")[7].replace(".txt","")+":00"
-            print date
-            id_capt = fic.split("_")[2]
-            if  id_capt == "28-000005d305e4":
-                fields = {"fields":{"date_mesure":date, "valeur":temperature, "capteur":["capteur1"]}, "model":"moniteur.mesure", "pk":pk}
-                #if temperature < 20:
-                #    temperature = str(temperature)
-                #    alert_mail("capteur 1", temperature) 
-            elif id_capt == "28-000005d31e24":
-                fields = {"fields":{"date_mesure":date, "valeur":temperature, "capteur":["capteur2"]}, "model":"moniteur.mesure", "pk":pk}
-                #if temperature < 20:
-                #    temperature = str(temperature)
-                #    alert_mail("capteur 1", temperature) 
+    if "hygrometrie" in fic:
+        opened = open(os.path.join(doss,fic))
+        for line in opened:
+            print line
+            if "Hum" in line:
+                hum = line.split("=")[2].replace("%","").replace(" ", "")
+                date = fic.split("_")[4] + "-" + fic.split("_")[3] + "-" + fic.split("_")[2] + " " + fic.split("_")[5] +\
+                ":" + fic.split("_")[6].replace(".txt","")+":00"
+		fields = {"fields":{"date_mesure":date, "valeur":float(hum), "capteur":["capteur4"]}, "model":"moniteur.mesure", "pk":pk}
+                pk += 1
+		fields = json.dumps(fields)
+		data = '[' + fields + ']'
+		if not os.path.isdir("/home/pi/fixture"):
+		    os.makedirs("/home/pi/fixture")
 
-            elif id_capt == "28-000002ad9190":
-                fields = {"fields":{"date_mesure":date, "valeur":temperature, "capteur":["capteur3"]}, "model":"moniteur.mesure", "pk":pk}
-                #if temperature < 20:
-                #    temperature = str(temperature)
-                #    alert_mail("capteur 1", temperature) 
-            pk += 1 
-            
-	    fields = json.dumps(fields)
-	    data = '[' + fields + ']'
+                date = fic.split("_")[4] + "-" + fic.split("_")[3] + "-" + fic.split("_")[2] + " " + fic.split("_")[5] +\
+                ":" + fic.split("_")[6].replace(".txt","")+":00"
 
-	    if not os.path.isdir("/home/pi/fixture"):
-	        os.makedirs("/home/pi/fixture")
+		output_file = "/home/pi/fixture/hygro_du_%s.json" %date.replace(" ","_").replace(":","_")
 
-	    date =  fic.split("_")[5] + "-" + fic.split("_")[4] + "-" + fic.split("_")[3] + " " + fic.split("_")[6] +\
-	    ":" + fic.split("_")[7].replace(".txt","")+":00"
+		f = open(output_file, 'w')
+		f.write(data)
+		f.close()
+    else:
+	    opened = open(os.path.join(doss,fic))
+	    for line in opened:
+		if "t=" in line:
+		    line = line.split("=")
+		    temperature = float(line[-1])/1000
+		    date =  fic.split("_")[5] + "-" + fic.split("_")[4] + "-" + fic.split("_")[3] + " " + fic.split("_")[6] +\
+		    ":" + fic.split("_")[7].replace(".txt","")+":00"
+		    print date
+		    id_capt = fic.split("_")[2]
+		    if  id_capt == "28-000005d305e4":
+			fields = {"fields":{"date_mesure":date, "valeur":temperature, "capteur":["capteur1"]}, "model":"moniteur.mesure", "pk":pk}
+			#if temperature < 20:
+			#    temperature = str(temperature)
+			#    alert_mail("capteur 1", temperature) 
+		    elif id_capt == "28-000005d31e24":
+			fields = {"fields":{"date_mesure":date, "valeur":temperature, "capteur":["capteur2"]}, "model":"moniteur.mesure", "pk":pk}
+			#if temperature < 20:
+			#    temperature = str(temperature)
+			#    alert_mail("capteur 1", temperature) 
 
-	    output_file = "/home/pi/fixture/temperature_du_%s.json" %date.replace(" ","_").replace(":","_")
+		    elif id_capt == "28-000002ad9190":
+			fields = {"fields":{"date_mesure":date, "valeur":temperature, "capteur":["capteur3"]}, "model":"moniteur.mesure", "pk":pk}
+			#if temperature < 20:
+			#    temperature = str(temperature)
+			#    alert_mail("capteur 1", temperature) 
+		    pk += 1 
+		    
+		    fields = json.dumps(fields)
+		    data = '[' + fields + ']'
 
-	    f = open(output_file, 'w')
-	    f.write(data)
-	    f.close()
+		    if not os.path.isdir("/home/pi/fixture"):
+			os.makedirs("/home/pi/fixture")
+
+		    date =  fic.split("_")[5] + "-" + fic.split("_")[4] + "-" + fic.split("_")[3] + " " + fic.split("_")[6] +\
+		    ":" + fic.split("_")[7].replace(".txt","")+":00"
+
+		    output_file = "/home/pi/fixture/temperature_du_%s.json" %date.replace(" ","_").replace(":","_")
+
+		    f = open(output_file, 'w')
+		    f.write(data)
+		    f.close()
 #On crée un nouveau fichier dans le dossier fixture
-            print "succes:", output_file, "généré."
+		    print "succes:", output_file, "généré."
 
 #On injecte les données dans la bdd
 #try:
@@ -124,5 +148,5 @@ subprocess.call(["bash","/home/bouable/esigetel/web/raspberry/collecteur/bash/lo
 #On supprime le repertoire complet de la fixture
 print "succes:", output_file, "sauvergardé dans la bdd."
 shutil.rmtree("/home/pi/fixture")
-#shutil.rmtree(doss)
-#os.makedirs(doss)
+shutil.rmtree(doss)
+os.makedirs(doss)
