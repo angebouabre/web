@@ -24,8 +24,8 @@ h1{
     font-weight: bold;
     font-size: 17px;
     color: rgba(26,23,27, 1);
-    background-color: rgba(87,171,39, 1);
-    border-color: rgba(87,171,39, 1);
+    background-color: rgba(87,171,39, 1) !important;
+    border-color: rgba(87,171,39, 1) !important;
 }
 
 .panel-up{
@@ -37,8 +37,8 @@ h1{
     font-weight: bold;
     font-size: 17px;
     color: rgba(26,23,27, 1);
-    background-color: rgba(226,0,26, 1);
-    border-color: rgba(226,0,26, 1);
+    background-color: rgba(226,0,26, 1) !important;
+    border-color: rgba(226,0,26, 1) !important;
 }
 
 .panel-down{

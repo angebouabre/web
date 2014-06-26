@@ -31,7 +31,7 @@ class Carte(models.Model):
                                    default=RASPBERRY,
                                    blank=True,
                                    null=True)
-    mac = models.CharField(max_length=30, blank=True, null=True)
+    mac = models.CharField(max_length=30, blank=True, unique=True)
     memoire_disque = models.CharField(max_length=30, blank=True, null=True)
     is_activated = models.BooleanField()
     status = models.CharField(max_length=6)

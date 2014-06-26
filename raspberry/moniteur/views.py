@@ -165,10 +165,10 @@ class CarteListView(ListView):
                 if 'MAC_ADDRESS=' in line:
                     carte = Carte()
                     mac = line.split('=')[1].rstrip()
-                    carte.nom_carte = "Rename_"+mac.replace(":","_")
+                    carte.nom_carte = mac.replace(":","_")
                     carte.mac = mac
                     carte.is_activated = False
-                    if carte.nom_carte != "Rename_None":
+                    if carte.nom_carte != "None" and str(carte.mac).lower().replace(" ","") != "00:17:33:31:6f:c8":
                         carte.save()
         except:
             print "Unexpected error:", sys.exc_info()[0]

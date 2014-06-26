@@ -14,16 +14,18 @@ def get_last_pk(db):
     val = val[-1][0]
     return val
 
-
+#Connexion a la carte et récuperation des données qu'on stocke dans un fichier en local dans /home/pi/data/
 try:
     a = subprocess.call(["bash","/home/pi/bash/download.sh"])
 except:
     pass
 
+#On recupère le dernier id des mesures
 bdd = "/home/pi/web/raspberry/mesure.db"
 pk = get_last_pk(bdd)
 pk += 1
 
+#On parcours les fichiers du dossier des données et on les parse
 doss = "/home/pi/data"
 for fic in os.listdir(doss):
     opened = open(os.path.join(doss,fic))
@@ -49,13 +51,15 @@ output_file = "/home/pi/fixture/temperature_du_%s.json" %date
 f = open(output_file, 'w')
 f.write(data)
 f.close()
+#On crée un nouveau fichier dans le dossier fixture
 print "succes:", output_file, "généré."
 
+#On injecte les données dans la bdd
 #try:
 subprocess.call(["bash","/home/pi/bash/loaddata.sh"])
 #except:
 #    print "ici" 
-
+#On supprime le repertoire complet de la fixture
 print "succes:", output_file, "sauvergardé dans la bdd."
 shutil.rmtree("/home/pi/fixture")
 shutil.rmtree(doss)

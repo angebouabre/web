@@ -23,7 +23,7 @@ print nmap_info_file
 
 def check_service():
     while True:
-        try:
+      #  try:
             data="\n"
             cartes = []
             print("Scanning Network...")
@@ -45,10 +45,18 @@ def check_service():
                         mac5 = res.split(':')[4][0:10]
                         mac6 = res.split(':')[5][:2]
                         mac = "%s:%s:%s:%s:%s:%s" %(mac1, mac2, mac3, mac4, mac5, mac6)
-                        carte = Carte.objects.get(mac=mac)
-                        carte.status = status
-                        macs = cartes.append(mac)
-                        carte.save()
+                        if str(mac).lower().replace(" ","") != "00:17:33:31:6f:c8":
+                            try:
+                                res = Carte.objects.get_or_create(mac=mac, is_activated=False, nom_carte=mac.replace(":","_"))
+                                carte = Carte.objects.get(mac=mac)
+                                carte.status = status
+                                macs = cartes.append(mac)
+                                carte.save()
+                            except:
+                                carte = Carte.objects.get(mac=mac)
+                                carte.status = status
+                                macs = cartes.append(mac)
+                                carte.save()
                     else:
                         mac = None
                     data = data + "HOSTNAME=%s\nMAC_ADDRESS=%s\nIP_ADDRESS=%s\nSTATUS=%s\n\n" %(hostname, mac, host, status)
@@ -65,9 +73,10 @@ def check_service():
                 carte.status = "Down"
                 carte.save()
             #time.sleep(5)
-        except KeyboardInterrupt:
-            print "OK"
-            raise
-        except:
-            pass
+       # except KeyboardInterrupt:
+       #     print "OK"
+       #     raise
+       # except:
+       #     print "error", sys.exc_info()[0]
+       #     pass 
 check_service()

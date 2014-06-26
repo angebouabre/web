@@ -12,20 +12,20 @@
 <link href='http://fonts.googleapis.com/css?family=Special+Elite|Bitter' rel='stylesheet' type='text/css'>
 <div class="row-fluid">
     <div class="container-fluid">
-      <div class="col-md-9 col-md-offset-3">
+      <div class="col-md-10 col-md-offset-2">
         <div class="panel panel-primary mouseentrepot"><!-- panel primary -->
             <div class="panel-heading"><center>Liste des cartes</center></div>
                <div class="panel-body ">
                 <div class="col-md-12">
                    {% for carte in cartes %}
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="row">
                         {% if carte.status == "up" %}
                           <div class="panel panel-primary col-md-11 col-md-offset-1 panel-up">
-                              <div class="panel-heading carte-up"><center>{{carte.nom_carte|truncatechars:12}}</center></div>
+                              <div class="panel-heading carte-up"><center>{{carte.nom_carte|truncatechars:12|upper}}</center></div>
                         {% else %}
                           <div class="panel panel-primary col-md-11 col-md-offset-1 panel-down">
-                              <div class="panel-heading carte-down"><center>{{carte.nom_carte|truncatechars:12}}</center></div>
+                              <div class="panel-heading carte-down"><center>{{carte.nom_carte|truncatechars:12|upper}}</center></div>
                         {% endif %}
                               <div class="panel-body">
                                   <div class="col-md-12">
