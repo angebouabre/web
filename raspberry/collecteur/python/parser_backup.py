@@ -4,6 +4,7 @@
 import os, json, shutil
 import sqlite3
 import subprocess
+import psycopg2
 
 
 
@@ -55,6 +56,12 @@ def get_last_pk(db):
 
 #Connexion a la carte et récuperation des données qu'on stocke dans un fichier en local dans /home/pi/data/
 
+conn = psycopg2.connect(host="localhost", user="pi", dbname="mesure_db", password="toto1" )
+c = conn.cursor()
+query = "select id from moniteur_mesure order by id"
+c.execute(query)
+val = c.fetchall()
+val = val[-1][0]
 
 
 try:
@@ -66,7 +73,7 @@ except:
 
 #On recupère le dernier id des mesures
 bdd = "/home/bouable/esigetel/web/raspberry/mesure.db"
-pk = get_last_pk(bdd)
+pk = val 
 pk += 1
 
 #On parcours les fichiers du dossier des données et on les parse

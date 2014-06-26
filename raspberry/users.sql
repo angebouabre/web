@@ -1,0 +1,3 @@
+INSERT INTO auth_user VALUES(1,'pbkdf2_sha256$12000$UzUrbz4XB74w$HO6yfZoJ5vxOz3ErG1r+WpdlUtFLYnDK1tQuOPkPEcc=','2014-06-26 15:16:47.534941',1,'pi','','','',1,1,'2014-05-24 12:06:28');
+INSERT INTO auth_user VALUES(2,'pbkdf2_sha256$12000$03vQDmWcgKxR$2wus3HAlNabi0b/BMsrYnMtHfiszMux74sco6ZrdA6E=','2014-06-26 15:15:19.241019',0,'t.test','','','',1,1,'2014-06-24 14:47:11');
+INSERT INTO auth_user VALUES(3,'pbkdf2_sha256$12000$37Uk59Qy4omR$O33eKUP9ubTSNrAmeReVhPR7yORZ9e9Iwp5LCX2pqyU=','2014-06-25 15:46:42.756179',0,'arno','','','',1,1,'2014-06-25 14:33:31');
